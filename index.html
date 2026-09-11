@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Victoria Tjhin | Hardware, Silicon and Software Engineering</title>
-<meta name="description" content="Victoria Tjhin, Nanotechnology Engineering at the University of Waterloo. RTL and ASIC design, analog CMOS, embedded firmware, and the software that verifies it.">
+<meta name="description" content="Victoria Tjhin, Nanotechnology Engineering at the University of Waterloo. Mixed-signal ASIC design, RTL and verification, computer architecture, embedded C++, and scientific computing.">
 <link rel="canonical" href="https://victoriatjhin.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Victoria Tjhin">
 <meta property="og:url" content="https://victoriatjhin.github.io/">
 <meta property="og:title" content="Victoria Tjhin | Hardware, Silicon and Software Engineering">
-<meta property="og:description" content="Nanotechnology Engineering at the University of Waterloo. RTL and ASIC design, analog CMOS, embedded firmware, and the software that verifies it.">
+<meta property="og:description" content="Mixed-signal ASIC design, RTL and verification, computer architecture, embedded C++, and scientific computing.">
 <meta property="og:image" content="https://victoriatjhin.github.io/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -18,231 +18,179 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* mask-layer palette: each domain of work gets its own layer colour */
-  --work:      #6e8cff;
-  --research:  #3fd1b0;
-  --projects:  #ff8a5c;
-  --volunteer: #b18aff;
+  --asic:     #6e8cff;
+  --analog:   #ff8a5c;
+  --software: #3fd1b0;
+  --embedded: #b18aff;
+  --gold:     #e0b544;
 
   --base:    #000000;
-  --surface: #101216;
+  --surface: #0d0f13;
+  --raised:  #14171c;
   --ink:     #edeff2;
   --muted:   #8a929c;
-  --hair:    #262a30;
-  --grid:    #1a1d22;
+  --dim:     #5d646d;
+  --hair:    #23272e;
+  --grid:    #16191e;
 
-  --measure: 68ch;
-  --pad: clamp(20px, 4vw, 56px);
+  --pad: clamp(20px, 5vw, 64px);
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 
 body{
   margin:0;
   background-color:var(--base);
   background-image:radial-gradient(var(--grid) 1px, transparent 1px);
-  background-size:26px 26px;
-  background-position:-1px -1px;
+  background-size:28px 28px;
   color:var(--ink);
-  font-family:"Source Serif 4", Georgia, serif;
-  font-size:17px;
-  line-height:1.62;
+  font-family:Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size:16px;line-height:1.6;
   -webkit-font-smoothing:antialiased;
 }
-
-h1,h2,h3,h4,nav,.ui{font-family:Archivo, "Helvetica Neue", Arial, sans-serif}
-
 a{color:inherit}
-:focus-visible{outline:2.5px solid var(--work); outline-offset:3px; border-radius:2px}
+:focus-visible{outline:2.5px solid var(--asic);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
 
-.wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad)}
-
-/* ---------- top bar ---------- */
-.topbar{
-  position:sticky;top:0;z-index:50;
-  background:rgba(0,0,0,.88);
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--hair);
-}
-.topbar .wrap{display:flex;align-items:center;gap:24px;height:56px}
+/* ---------- nav ---------- */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}
+.topbar .wrap{display:flex;align-items:center;gap:20px;height:62px}
 .mark{font-weight:700;font-size:15px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
-.mark span{color:var(--muted);font-weight:500}
-.topnav{margin-left:auto;display:flex;gap:22px;font-size:14px;font-weight:500}
-.topnav a{text-decoration:none;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent}
+.topnav{margin-left:auto;display:flex;gap:24px;font-size:14px;font-weight:500}
+.topnav a{text-decoration:none;color:var(--muted);padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}
 .topnav a:hover{color:var(--ink);border-bottom-color:var(--ink)}
-@media (max-width:860px){.topnav{display:none}}
+@media (max-width:900px){.topnav{gap:16px;font-size:13px;overflow-x:auto;scrollbar-width:none}.topnav::-webkit-scrollbar{display:none}}
 
 /* ---------- hero ---------- */
-.hero{padding:clamp(48px,7vw,96px) 0 clamp(40px,5vw,72px)}
-.hero{padding:clamp(48px,8vw,96px) 0;min-height:56vh;display:flex;align-items:center}
-.hero .wrap{width:100%;text-align:center}
+.hero{padding:clamp(64px,11vw,150px) 0 clamp(48px,7vw,88px)}
+h1{font-size:clamp(42px,8.5vw,96px);line-height:.92;letter-spacing:-.04em;font-weight:700;margin:0 0 20px}
+.role{font-size:clamp(16px,2.6vw,24px);color:var(--muted);font-weight:500;letter-spacing:-.01em;margin:0 0 14px}
+.role b{color:var(--ink);font-weight:600}
+.stackline{font-family:"JetBrains Mono",monospace;font-size:clamp(12px,1.8vw,15px);color:var(--dim);margin:0 0 34px}
+.stackline .gold{color:var(--gold)}
+.role b{color:var(--ink);font-weight:500}
+.pitch{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(18px,2.3vw,23px);line-height:1.5;max-width:40ch;color:var(--ink);margin:0 0 36px}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.cta a{
+  font-size:14px;font-weight:500;text-decoration:none;padding:11px 20px;
+  border:1px solid var(--hair);background:var(--surface);border-radius:2px;
+  transition:border-color .15s ease,background .15s ease;
+}
+.cta a:hover{border-color:var(--ink);background:var(--raised)}
+.cta a.primary{background:var(--ink);color:#000;border-color:var(--ink);font-weight:600}
+.cta a.primary:hover{background:#fff}
 
-h1{
-  font-size:clamp(34px,8.6vw,104px);
-  white-space:nowrap;
-  line-height:.94;
-  letter-spacing:-.04em;
-  font-weight:700;
-  margin:0;
-}
-.lede{font-size:clamp(18px,2vw,21px);line-height:1.55;max-width:34ch;margin:0 0 26px;color:var(--ink)}
-.subline{font-size:16px;color:var(--muted);max-width:42ch;margin:0 0 30px}
+/* ---------- section shell ---------- */
+section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
+.shead{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
+.shead h2{font-size:clamp(26px,4vw,42px);letter-spacing:-.03em;font-weight:700;margin:0;line-height:1}
+.shead .note{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);margin-left:auto}
 
-.contacts{display:flex;flex-wrap:wrap;gap:10px}
-.contacts a{
-  font-family:Archivo,sans-serif;font-size:14px;font-weight:500;text-decoration:none;
-  padding:8px 14px;border:1px solid var(--ink);border-radius:999px;background:transparent;
-  transition:background .15s ease,color .15s ease;
-}
-.contacts a:hover{background:var(--ink);color:#000}
+/* ---------- featured project ---------- */
+.feat{border-top:1px solid var(--hair);padding:clamp(32px,4.5vw,56px) 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:start}
+.feat:first-of-type{border-top:none;padding-top:0}
+@media (max-width:900px){.feat{grid-template-columns:1fr;gap:26px}}
+.fnum{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--accent);margin:0 0 10px}
+.feat h3{font-size:clamp(22px,3vw,31px);letter-spacing:-.025em;font-weight:700;margin:0 0 10px;line-height:1.12}
+.tags{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:0 0 16px}
+.desc{font-family:"Source Serif 4",Georgia,serif;font-size:17.5px;line-height:1.55;color:var(--ink);margin:0 0 22px;max-width:52ch}
 
-/* ---------- floorplan ---------- */
-.floorplan{width:100%;height:auto;display:block}
-.fp-die{fill:var(--surface);stroke:var(--ink);stroke-width:1.5}
-.fp-pad{fill:var(--muted);opacity:.55}
-.fp-block rect{stroke-width:1.5;transition:fill-opacity .18s ease}
-.fp-block text{font-family:Archivo,sans-serif;fill:var(--ink)}
-.fp-block .fp-name{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
-.fp-block .fp-count{font-size:11.5px;font-weight:500;fill:var(--muted)}
-.fp-block:hover rect,.fp-block:focus-visible rect{fill-opacity:.34}
-.fp-block:focus-visible{outline:none}
-.fp-block:focus-visible rect{stroke-width:3}
-.fp-route{stroke:var(--hair);stroke-width:1;fill:none}
-.fp-caption{font-family:Archivo,sans-serif;font-size:11.5px;fill:var(--muted);font-weight:500}
+.specs{display:flex;flex-wrap:wrap;gap:26px;margin:0 0 22px}
+.spec .v{font-size:clamp(19px,2.5vw,26px);font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--accent)}
+.spec .k{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);margin-top:6px}
 
-@media (prefers-reduced-motion: no-preference){
-  .fp-pad{opacity:0;animation:padIn .5s ease forwards}
-  .fp-block{opacity:0;animation:blockIn .55s cubic-bezier(.2,.7,.3,1) forwards}
-  .fp-block:nth-of-type(1){animation-delay:.42s}
-  .fp-block:nth-of-type(2){animation-delay:.52s}
-  .fp-block:nth-of-type(3){animation-delay:.62s}
-  .fp-block:nth-of-type(4){animation-delay:.72s}
-  @keyframes padIn{to{opacity:.55}}
-  @keyframes blockIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.plinks{display:flex;flex-wrap:wrap;gap:8px}
+.plinks a,.plinks button{
+  font-family:"JetBrains Mono",monospace;font-size:12.5px;text-decoration:none;cursor:pointer;
+  padding:8px 14px;border:1px solid var(--hair);background:transparent;color:var(--muted);border-radius:2px;
+  transition:color .15s ease,border-color .15s ease;
 }
+.plinks a:hover,.plinks button:hover{color:var(--ink);border-color:var(--accent)}
 
-/* ---------- education strip ---------- */
-.edu{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);background:rgba(16,18,22,.7)}
-.edu .wrap{display:flex;flex-wrap:wrap;gap:8px 40px;padding-top:22px;padding-bottom:22px;align-items:baseline}
-.edu h2{font-size:14px;font-weight:600;margin:0 0 2px;color:var(--muted);flex:0 0 100%}
-.edu .degree{font-family:Archivo,sans-serif;font-weight:600;font-size:20px;letter-spacing:-.015em}
-.edu .fact{font-size:17px;color:var(--muted)}
-.edu .lead{flex:0 0 100%;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:2px}
-.edu .lead .degree{font-size:23px;color:#e0b544}
-.edu .fact strong{color:var(--ink);font-weight:600}
-.techstack{border-top:none}
-.techstack .wrap{gap:8px 36px;padding-top:20px;padding-bottom:20px}
-.techstack .fact{font-size:16px;line-height:1.5}
-.techstack .fact strong{font-family:Archivo,sans-serif;font-size:15px;margin-right:6px}
+.diagram{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--hair);border-radius:2px}
+.dg-box{fill:var(--raised);stroke:var(--hair)}
+.dg-box.hi{stroke:var(--accent)}
+.dg-t{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink)}
+.dg-s{font-family:"JetBrains Mono",monospace;font-size:9px;fill:var(--dim)}
+.dg-a{stroke:var(--accent);stroke-width:1.4;fill:none;opacity:.85}
+.dg-cap{font-family:"JetBrains Mono",monospace;font-size:9.5px;fill:var(--dim)}
 
-/* ---------- sections ---------- */
-section.band{padding:clamp(56px,7vw,96px) 0;border-bottom:1px solid var(--hair)}
-.band .wrap{display:grid;grid-template-columns:210px minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
-@media (max-width:860px){.band .wrap{grid-template-columns:1fr;gap:28px}}
+.details{margin-top:18px;padding-top:18px;border-top:1px dashed var(--hair)}
+.details[hidden]{display:none}
+.details ul{margin:0;padding-left:1.1em;list-style:none}
+.details li{position:relative;font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.55;margin-bottom:9px;color:var(--muted)}
+.details li::before{content:"";position:absolute;left:-1.1em;top:.6em;width:5px;height:5px;background:var(--accent)}
 
-.rail{position:sticky;top:142px}
-@media (max-width:860px){.rail{position:static}}
-.rail h2{font-size:clamp(24px,3vw,30px);line-height:1.08;letter-spacing:-.025em;margin:0 0 12px;font-weight:700}
-.rail .swatch{display:block;width:44px;height:7px;border-radius:1px;margin-bottom:14px}
-.rail p{font-size:14.5px;color:var(--muted);margin:0;max-width:30ch;line-height:1.5}
-
-/* ---------- slide deck ---------- */
-.deck{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-.deckbar{position:sticky;top:56px;z-index:40;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--hair)}
-.deckbar .wrap{display:flex;align-items:center;gap:10px;height:60px}
-.deckarrow{
-  flex:0 0 auto;width:38px;height:38px;border:1px solid var(--ink);background:transparent;color:var(--ink);
-  border-radius:999px;cursor:pointer;font:500 20px/1 Archivo,sans-serif;
-  display:flex;align-items:center;justify-content:center;padding:0 0 2px;
-  transition:background .15s ease,color .15s ease;
-}
-.deckarrow:hover{background:var(--ink);color:#000}
-.deckdots{display:flex;gap:2px;flex:1 1 auto;overflow-x:auto;scrollbar-width:none}
-.deckdots::-webkit-scrollbar{display:none}
-.deckdots button{
-  display:flex;align-items:center;gap:9px;white-space:nowrap;cursor:pointer;
-  font:500 14px/1 Archivo,sans-serif;color:var(--muted);
-  background:transparent;border:0;border-bottom:2px solid transparent;padding:10px 12px;
-}
-.deckdots button:hover{color:var(--ink)}
-.deckdots button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
-.chip{display:block;width:11px;height:11px;border-radius:1px;flex:0 0 auto}
-.deckhint{font:500 12.5px/1 Archivo,sans-serif;color:var(--muted);white-space:nowrap}
-.slides > section.band{border-bottom:none}
-.slides > section.band[hidden]{display:none}
-@media (prefers-reduced-motion: no-preference){
-  .slides > section.band{animation:slideIn .28s ease}
-  @keyframes slideIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-}
-@media (max-width:820px){
-  .deckhint{display:none}
-  .deckdots button .label{display:none}
-  .deckdots button[aria-selected="true"] .label{display:inline}
-  .deckdots{justify-content:center}
-  .rail{position:static}
-}
-
-/* ---------- entries ---------- */
-.entry{
-  background:var(--surface);
-  border:1px solid var(--hair);
-  border-left:4px solid var(--accent);
-  padding:22px 24px;
-  margin-bottom:14px;
-}
-.entry:last-child{margin-bottom:0}
-.entry h3{
-  font-size:19px;font-weight:600;letter-spacing:-.015em;margin:0;line-height:1.3;
-}
-.entry h3 .org{color:var(--accent)}
-.meta{
-  font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;color:var(--muted);
-  margin:5px 0 14px;display:flex;flex-wrap:wrap;gap:4px 18px;
-}
-.entry ul{margin:0;padding-left:1.05em;list-style:none}
-.entry li{position:relative;margin-bottom:9px;max-width:var(--measure);line-height:1.55}
-.entry li:last-child{margin-bottom:0}
-.entry li::before{
-  content:"";position:absolute;left:-1.05em;top:.62em;
-  width:6px;height:6px;background:var(--accent);opacity:.75;
-}
-
-/* ---------- project filter ---------- */
-.filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+/* ---------- project grid ---------- */
+.filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
 .filter button{
-  font-family:Archivo,sans-serif;font-size:13.5px;font-weight:500;
-  background:transparent;border:1px solid var(--hair);color:var(--muted);
-  padding:7px 13px;cursor:pointer;border-radius:2px;
-  transition:border-color .15s ease,color .15s ease;
+  font-family:"JetBrains Mono",monospace;font-size:12.5px;background:transparent;
+  border:1px solid var(--hair);color:var(--muted);padding:8px 13px;cursor:pointer;border-radius:2px;
 }
-.filter button:hover{color:var(--ink);border-color:var(--muted)}
-.filter button[aria-pressed="true"]{background:var(--projects);border-color:var(--projects);color:#000}
-.entry[hidden]{display:none}
-.emptynote{display:none;font-size:15px;color:var(--muted)}
+.filter button:hover{color:var(--ink)}
+.filter button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#000}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--hair);border-top:3px solid var(--accent);padding:22px;display:flex;flex-direction:column}
+.card[hidden]{display:none}
+.card h4{font-size:18px;font-weight:600;letter-spacing:-.02em;margin:0 0 8px;line-height:1.25}
+.card .tags{margin-bottom:12px}
+.card p:not(.tags){font-family:"Source Serif 4",Georgia,serif;font-size:15.5px;line-height:1.5;color:var(--muted);margin:0 0 16px;flex:1}
+.card .plinks a{padding:6px 11px;font-size:11.5px}
+
+/* ---------- experience ---------- */
+.xp{background:var(--surface);border:1px solid var(--hair);border-left:3px solid var(--accent);padding:24px;margin-bottom:12px}
+.xp .org{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0}
+.xp .rol{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent);margin:6px 0 0}
+.xp .when{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim);margin:4px 0 14px}
+.xp .sum{font-family:"Source Serif 4",Georgia,serif;font-size:16.5px;line-height:1.55;margin:0 0 16px;max-width:62ch}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair);margin:0 0 18px}
+.pillar{background:var(--raised);padding:14px 16px}
+.pillar h5{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--accent);margin:0 0 6px;font-weight:500}
+.pillar p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.45}
 
 /* ---------- skills ---------- */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
-.skillcol{background:var(--surface);padding:20px 22px}
-.skillcol h3{font-size:13.5px;font-weight:600;margin:0 0 10px;color:var(--muted)}
-.skillcol p{margin:0;font-size:16px;line-height:1.5}
-.skillcol a{text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:1px;transition:border-color .15s ease}
-.skillcol a:hover{border-bottom-color:var(--ink)}
-#contact .skills{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-#contact .wrap{display:block}
-#contact .rail{position:static;margin-bottom:24px}
+.swgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
+.sw{background:var(--surface);padding:24px}
+.sw h3{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px}
+.sw .sub{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);margin:0 0 14px}
+.sw ul{margin:0;padding:0;list-style:none}
+.sw li{font-size:14.5px;color:var(--muted);padding:8px 0;border-top:1px solid var(--hair)}
+.sw li a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--hair)}
+.sw li a:hover{border-bottom-color:var(--ink)}
 
-/* ---------- footer ---------- */
-footer{padding:36px 0 56px}
-footer .wrap{max-width:1120px}
-.foot-h{font-family:Archivo,sans-serif;font-size:clamp(28px,4.5vw,44px);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0 0 18px;max-width:18ch}
-.foot-sub{font-size:17px;color:var(--muted);max-width:46ch;margin:0 0 28px}
-.footlinks{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:44px}
-.colophon{font-family:Archivo,sans-serif;font-size:13px;color:var(--muted);border-top:1px solid var(--hair);padding-top:18px;display:flex;flex-wrap:wrap;gap:6px 24px}
+.skillline{font-size:clamp(18px,2.6vw,27px);font-weight:600;letter-spacing:-.02em;margin:0 0 10px;line-height:1.3}
+.skillline.dimline{color:var(--muted);font-weight:500;font-size:clamp(16px,2.2vw,22px);margin-bottom:0}
+.skillrow{display:flex;gap:16px;padding:14px 0;border-top:1px solid var(--hair);flex-wrap:wrap}
+.skillrow:last-child{border-bottom:1px solid var(--hair)}
+.skillrow dt{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim);flex:0 0 150px;padding-top:3px}
+.skillrow dd{margin:0;font-size:16px;color:var(--ink);flex:1 1 300px}
+
+/* ---------- about / edu / contact ---------- */
+.two{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,5vw,72px);align-items:start}
+@media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
+.about p{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(18px,2.2vw,21px);line-height:1.6;max-width:62ch;color:var(--muted);margin:0 0 18px}
+.about p:first-of-type{color:var(--ink)}
+.sch{font-size:22px;font-weight:700;color:var(--gold);letter-spacing:-.02em;margin:0}
+.deg{font-size:16px;margin:6px 0 2px}
+.fine{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim);margin:0}
+
+.contactgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
+.cc{background:var(--surface);padding:20px 22px}
+.cc h3{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);margin:0 0 8px;font-weight:500}
+.cc a{font-size:16px;text-decoration:none;border-bottom:1px solid var(--hair)}
+.cc a:hover{border-bottom-color:var(--ink)}
+
+.other{font-size:15px;color:var(--muted);margin:20px 0 0;max-width:56ch;line-height:1.55}
+.other b{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);font-weight:500;display:block;margin-bottom:6px}
+
+footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
+.colophon{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim);display:flex;flex-wrap:wrap;gap:8px 28px}
 </style>
 </head>
 <body>
@@ -251,10 +199,11 @@ footer .wrap{max-width:1120px}
   <div class="wrap">
     <a class="mark" href="#top">Victoria Tjhin</a>
     <nav class="topnav">
-      <a href="#work">Work</a>
+      <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
-      <a href="#volunteering">Volunteering</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="resume.pdf">Resume</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -262,346 +211,546 @@ footer .wrap{max-width:1120px}
 
 <main id="top">
 
-<!-- ============ HERO ============ -->
+<!-- ==================== HERO ==================== -->
 <div class="hero">
   <div class="wrap">
-    <div>
-      <h1>Victoria Tjhin</h1>
-    </div>
-
-</div>
-</div>
-
-<!-- ============ EDUCATION ============ -->
-<div class="edu">
-  <div class="wrap">
-    <h2>Education</h2>
-    <span class="lead"><span class="degree">University of Waterloo</span><span class="fact">2024–2029</span></span>
-    <span class="degree">BSc Honours, Nanotechnology Engineering</span>
-    <span class="fact">GPA <strong>3.92 / 4.00</strong></span>
-    <span class="fact">Consecutive Term Distinction</span>
-    <span class="fact">Chemical Engineering, 2024–2025</span>
-  </div>
-</div>
-
-<!-- ============ TECH STACK ============ -->
-<div class="edu techstack">
-  <div class="wrap">
-    <h2>Tech stack</h2>
-    <span class="fact"><strong>Languages</strong> C++, Python, SQL, MATLAB</span>
-    <span class="fact"><strong>HDL</strong> Verilog, SystemVerilog</span>
-    <span class="fact"><strong>Tools</strong> Xschem, Magic VLSI, Netgen, Ngspice, Vivado, ModelSim/VCS, GTKWave, KiCad</span>
-  </div>
-</div>
-
-<!-- ============ SECTION DECK ============ -->
-<div class="deck" id="deck">
-  <div class="deckbar">
-    <div class="wrap">
-      <button class="deckarrow" type="button" data-dir="-1" aria-label="Previous section">&#8249;</button>
-      <div class="deckdots" role="tablist" aria-label="Sections">
-        <button type="button" role="tab" aria-selected="true"  aria-controls="work"         data-i="0"><span class="chip" style="background:var(--work)"></span><span class="label">Work experience</span></button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="projects"     data-i="1"><span class="chip" style="background:var(--projects)"></span><span class="label">Projects</span></button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="research"     data-i="2"><span class="chip" style="background:var(--research)"></span><span class="label">Research</span></button>
-        <button type="button" role="tab" aria-selected="false" aria-controls="volunteering" data-i="3"><span class="chip" style="background:var(--volunteer)"></span><span class="label">Volunteering</span></button>
-      </div>
-      <button class="deckarrow" type="button" data-dir="1" aria-label="Next section">&#8250;</button>
-      <span class="deckhint">Arrow keys move between sections</span>
+    <h1>Victoria Tjhin</h1>
+    <p class="role"><b>Hardware</b> • <b>Silicon</b> • <b>Embedded</b> • <b>Software</b></p>
+    <p class="stackline"><span class="gold">Nanotechnology Engineering @ Waterloo</span> &nbsp;|&nbsp; ASIC · RTL · C++ · Python</p>
+    <div class="cta">
+      <a class="primary" href="resume.pdf">Resume</a>
+      <a href="https://github.com/victoriatjhin" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/eetjhin" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:eetjhin@uwaterloo.ca">Email</a>
     </div>
   </div>
-  <div class="slides">
-<!-- ============ WORK ============ -->
-<section class="band" id="work" style="--accent:var(--work)">
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="about">
   <div class="wrap">
-    <div class="rail">
-      <span class="swatch" style="background:var(--work)"></span>
-      <h2>Work experience</h2>
-    </div>
-    <div>
-
-      <article class="entry">
-        <h3>Battery Engineering Intern, <span class="org">Ontario Battery &amp; Electrochemistry Research Centre</span></h3>
-        <p class="meta"><span>OBEC</span><span>Waterloo, Canada</span></p>
-        <ul>
-          <li>Prototyped lithium-ion coin and pouch cells from slurry preparation through roll-to-roll electrode coating, tab welding, and glovebox assembly, owning the full build sequence for every test cell.</li>
-          <li>Analyzed electrode porosity, calendering pressure, and coating temperature across build runs, improving cell consistency and performance by 20%.</li>
-          <li>Characterized cells on Maccor cyclers using Electrochemical Impedance Spectroscopy, quantifying internal resistance, energy density, and C-rate behavior.</li>
-          <li>Authored SOPs and equipment documentation for the fabrication line, keeping results reproducible across operators.</li>
-        </ul>
-      </article>
-
-      <article class="entry">
-        <h3>Carbon Manager Intern, <span class="org">Triputra Agro Persada</span></h3>
-        <p class="meta"><span>May – Jul 2025</span><span>Jakarta, Indonesia</span></p>
-        <ul>
-          <li>Modeled annual carbon emissions and credit yield for a methane capture project using stoichiometric balances and advanced Excel functions, turning raw plant data into auditable figures.</li>
-          <li>Validated the model against ISO 14064-1 reporting requirements and assembled the documentation submitted for official government verification.</li>
-          <li>Led sustainability projects with the project management department, securing partnerships and land acquisition that raised carbon credit output by 10 to 15%.</li>
-        </ul>
-      </article>
-
-      <article class="entry">
-        <h3>Workplace Transformation Analyst, <span class="org">Scotiabank</span></h3>
-        <p class="meta"><span>Jan – Apr 2025</span><span>Toronto, Canada</span></p>
-        <ul>
-          <li>Analyzed workspace utilization data across six work ecosystems in SQL and Excel, cutting identified inefficiencies by 80%.</li>
-          <li>Built a retrofit proposal from that analysis, securing executive approval for 23 underutilized workspaces.</li>
-          <li>Delivered ad-hoc strategic analysis to executive leadership, shaping sustainment strategy for over 13,000 employees.</li>
-        </ul>
-      </article>
-
+    <div class="shead"><h2>About</h2></div>
+    <div class="about">
+      <p>I'm a Nanotechnology Engineering student at the University of Waterloo working at the hardware/software boundary. I design mixed-signal ASICs and RTL, write embedded C++ and systems software, and build the Python tooling that turns experimental data into results.</p>
+      <p>My work spans digital design and verification, analog CMOS layout, computer architecture, PCB design and bring-up, and scientific computing. I'm looking for co-op roles where those overlap.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ PROJECTS ============ -->
-<section class="band" id="projects" style="--accent:var(--projects)">
+<!-- ==================== FEATURED ==================== -->
+<section id="projects">
   <div class="wrap">
-    <div class="rail">
-      <span class="swatch" style="background:var(--projects)"></span>
-      <h2>Projects</h2>
+    <div class="shead">
+      <h2>Featured projects</h2>
+      <span class="note">4 of 9 · full list below</span>
     </div>
-    <div>
 
-      <div class="filter" role="group" aria-label="Filter projects by discipline">
-        <button type="button" data-filter="all" aria-pressed="true">All</button>
-        <button type="button" data-filter="rtl" aria-pressed="false">RTL &amp; ASIC</button>
-        <button type="button" data-filter="analog" aria-pressed="false">Analog &amp; mixed-signal</button>
-        <button type="button" data-filter="embedded" aria-pressed="false">Embedded &amp; PCB</button>
-        <button type="button" data-filter="software" aria-pressed="false">Software</button>
-      </div>
-
-      <div id="projectlist">
-
-        <article class="entry" data-tags="rtl analog embedded">
-          <h3>ASIC optical autoalignment system, <span class="org">SSCS 2026 Chipathon</span></h3>
-          <p class="meta"><span>Mixed-signal tape-out</span></p>
+    <!-- 01 -->
+    <article class="feat" style="--accent:var(--asic)">
+      <div>
+        <p class="fnum">01</p>
+        <h3>ASIC optical autoalignment system</h3>
+        <p class="tags">Mixed-signal ASIC · RTL · DSP · SSCS 2026 Chipathon</p>
+        <p class="desc">Engineered a mixed-signal front end to extract vibration-synchronous alignment error from photodetector current, feeding a 50 MHz X/Y closed-loop controller headed for silicon tape-out.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">50 MHz</div><div class="k">control loop</div></div>
+          <div class="spec"><div class="v">X/Y</div><div class="k">closed loop</div></div>
+          <div class="spec"><div class="v">40%</div><div class="k">latency reduction</div></div>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a>
+          <button type="button" data-toggle="d1" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d1" hidden>
           <ul>
-            <li>Designed the analog integrator and mixed-signal front end that extracts vibration-synchronous alignment error from photodetector current, feeding the closed-loop system headed for silicon tape-out.</li>
+            <li>Designed the analog integrator and mixed-signal front end that extracts vibration-synchronous alignment error from photodetector current.</li>
             <li>Implemented a parallel X/Y RTL DSP pipeline that estimates peak offset in two dimensions and issues a correction every dither cycle.</li>
-            <li>Optimized the control handshake between the analog front end, DSP, and actuator blocks, bringing correction inside the real-time timing budget.</li>
-            <li>Architected the hardware and software control system around modular block interfaces, keeping analog, digital, and control work independently testable.</li>
+            <li>Optimized the control handshake between the analog front end, DSP, and actuator blocks, cutting loop latency by 40% and bringing correction inside the real-time timing budget.</li>
+            <li>Architected the control system around modular block interfaces, keeping analog, digital, and control work independently testable.</li>
           </ul>
-        </article>
+        </div>
+      </div>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Signal path from photodetector through analog front end, X/Y DSP, peak offset estimation, to actuator control, with a closed-loop feedback path">
+        <text class="dg-cap" x="14" y="20">signal path</text>
+        <rect class="dg-box" x="12" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="24" y="61">Photo-</text><text class="dg-t" x="24" y="75">detector</text>
+        <path class="dg-a" d="M108 63 H124 M118 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="126" y="40" width="96" height="46" rx="2"/>
+        <text class="dg-t" x="138" y="61">Analog</text><text class="dg-t" x="138" y="75">front end</text>
+        <path class="dg-a" d="M226 63 H242 M236 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="244" y="40" width="90" height="46" rx="2"/>
+        <text class="dg-t" x="256" y="61">X/Y DSP</text><text class="dg-s" x="256" y="75">parallel</text>
+        <path class="dg-a" d="M338 63 H354 M348 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="356" y="40" width="90" height="46" rx="2"/>
+        <text class="dg-t" x="368" y="61">Peak</text><text class="dg-t" x="368" y="75">offset</text>
+        <path class="dg-a" d="M450 63 H466 M460 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="468" y="40" width="80" height="46" rx="2"/>
+        <text class="dg-t" x="480" y="61">Actuator</text><text class="dg-s" x="480" y="75">control</text>
+        <path class="dg-a" d="M508 90 V106 H58 V90 M53 96 l5 -6 5 6" stroke-dasharray="3 3"/>
+        <text class="dg-cap" x="238" y="120">closed-loop correction</text>
+      </svg>
+    </article>
 
-        <article class="entry" data-tags="rtl software">
-          <h3>Ethernet MAC receiver pipeline, <span class="org">UWASIC</span></h3>
-          <p class="meta"><span>Digital design &amp; verification</span></p>
+    <!-- 02 -->
+    <article class="feat" style="--accent:var(--asic)">
+      <div>
+        <p class="fnum">02</p>
+        <h3>Ethernet MAC receive pipeline</h3>
+        <p class="tags">SystemVerilog · RTL · Verification · UWASIC</p>
+        <p class="desc">Built a 10 Gb/s Ethernet MAC receive pipeline in SystemVerilog, spanning PCS decoding, CRC-32 validation, clock domain crossing, and AXI-Stream output.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">10 Gb/s</div><div class="k">line rate</div></div>
+          <div class="spec"><div class="v">CRC-32</div><div class="k">pipelined engine</div></div>
+          <div class="spec"><div class="v">CDC</div><div class="k">async FIFO</div></div>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/victoriatjhin/10G-Ethernet-Parser" target="_blank" rel="noopener">GitHub →</a>
+          <button type="button" data-toggle="d2" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d2" hidden>
           <ul>
-            <li>Developed the full MAC receive datapath in Verilog from PCS decoder to AXI-Stream output, covering preamble and SFD detection, frame delineation, and FCS stripping.</li>
+            <li>Developed the full 10 Gb/s MAC receive datapath in Verilog from PCS decoder to AXI-Stream output, covering preamble and SFD detection, frame delineation, and FCS stripping.</li>
             <li>Designed a pipelined CRC-32 engine in SystemVerilog using byte-serial decomposition and keep-aware partial-beat handling, sustaining a 64-bit data path across variable-length frames.</li>
             <li>Implemented an asynchronous FIFO for clock domain crossing, closing timing between the independent PCS and system domains.</li>
             <li>Wrote SystemVerilog testbenches covering protocol compliance and edge cases, catching failures before integration.</li>
           </ul>
-        </article>
+        </div>
+      </div>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Receive datapath from PCS decoder through MAC receive, CRC-32 check, asynchronous FIFO clock domain crossing, to AXI-Stream output">
+        <text class="dg-cap" x="14" y="20">receive datapath</text>
+        <rect class="dg-box" x="12" y="40" width="88" height="46" rx="2"/>
+        <text class="dg-t" x="24" y="61">PCS</text><text class="dg-t" x="24" y="75">decoder</text>
+        <path class="dg-a" d="M104 63 H120 M114 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="122" y="40" width="96" height="46" rx="2"/>
+        <text class="dg-t" x="134" y="61">MAC RX</text><text class="dg-s" x="134" y="75">SFD · frame</text>
+        <path class="dg-a" d="M222 63 H238 M232 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="240" y="40" width="88" height="46" rx="2"/>
+        <text class="dg-t" x="252" y="61">CRC-32</text><text class="dg-s" x="252" y="75">pipelined</text>
+        <path class="dg-a" d="M332 63 H348 M342 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="350" y="40" width="96" height="46" rx="2"/>
+        <text class="dg-t" x="362" y="61">Async FIFO</text><text class="dg-s" x="362" y="75">CDC</text>
+        <path class="dg-a" d="M450 63 H466 M460 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="468" y="40" width="80" height="46" rx="2"/>
+        <text class="dg-t" x="480" y="61">AXI-</text><text class="dg-t" x="480" y="75">Stream</text>
+        <path class="dg-a" d="M398 92 V104" stroke-dasharray="3 3"/>
+        <text class="dg-cap" x="350" y="118">PCS clk → system clk</text>
+      </svg>
+    </article>
 
-        <article class="entry" data-tags="rtl embedded">
-          <h3>SPI-controlled PWM peripheral</h3>
-          <p class="meta"><span>Submitted for fabrication</span></p>
-          <ul>
-            <li>Designed a register-mapped SPI-controlled PWM peripheral in Verilog with duty cycle generation, output enable, and control logic, submitted for fabrication through Tiny Tapeout.</li>
-            <li>Verified operation across a 100 kHz SPI bus and a 10 MHz system clock through directed simulation and waveform analysis, confirming correct behavior in both clock domains.</li>
-            <li>Automated register and timing checks in the testbench, re-verifying every configuration change without manual inspection.</li>
-          </ul>
-        </article>
-
-        <article class="entry" data-tags="analog">
-          <h3>Two-stage CMOS operational amplifier</h3>
-          <p class="meta"><span>Schematic to layout</span></p>
-          <ul>
-            <li>Designed a differential-input, single-ended-output two-stage op-amp in 130 nm CMOS, sizing and biasing every device to stay within a 5 mW budget.</li>
-            <li>Completed the physical layout to a DRC-clean, LVS-matched state, clearing the design for fabrication.</li>
-            <li>Simulated gain, bandwidth, and bias point across DC, AC, and operating-point analysis, confirming the design met spec.</li>
-          </ul>
-        </article>
-
-        <article class="entry" data-tags="software">
-          <h3>Cycle-accurate cache simulator, <span class="org">C++</span></h3>
-          <p class="meta"><span>Computer architecture</span></p>
+    <!-- 03 -->
+    <article class="feat" style="--accent:var(--software)">
+      <div>
+        <p class="fnum">03</p>
+        <h3>Cycle-accurate cache simulator</h3>
+        <p class="tags">C++ · Intel Pin · Computer architecture</p>
+        <p class="desc">Built a cycle-accurate C++ cache simulator and drove it with 50M+ Intel Pin memory references to evaluate cache performance across configurations, then profiled it to 4× faster execution.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">50M+</div><div class="k">memory references</div></div>
+          <div class="spec"><div class="v">4×</div><div class="k">faster execution</div></div>
+          <div class="spec"><div class="v">AMAT</div><div class="k">hit rate · cycles</div></div>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/victoriatjhin/cache-simulator" target="_blank" rel="noopener">GitHub →</a>
+          <button type="button" data-toggle="d3" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d3" hidden>
           <ul>
             <li>Built a cycle-accurate cache simulator in C++ supporting configurable line size, associativity, LRU and random eviction, and write-allocate policies.</li>
-            <li>Instrumented real programs with Intel Pin to drive the simulator, reporting hit rate, AMAT, and total execution cycles for every configuration.</li>
-            <li>Optimized address decoding with bitwise operations and tight data structures, keeping large traces fast without losing cycle accuracy.</li>
+            <li>Instrumented real programs with Intel Pin to drive the simulator across 50M+ memory references, reporting hit rate, AMAT, and total execution cycles for every configuration.</li>
+            <li>Profiled address decoding and data structures, reducing runtime 4× while preserving cycle accuracy.</li>
             <li>Validated every configuration against hand-calculated ground truth, confirming correctness before drawing conclusions.</li>
           </ul>
-        </article>
+        </div>
+      </div>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Simulation pipeline: program under test instrumented by Intel Pin produces a memory trace fed to the C++ cache model, producing hit rate, AMAT and cycle counts">
+        <text class="dg-cap" x="14" y="20">simulation pipeline</text>
+        <rect class="dg-box" x="12" y="40" width="90" height="46" rx="2"/>
+        <text class="dg-t" x="24" y="61">Program</text><text class="dg-s" x="24" y="75">under test</text>
+        <path class="dg-a" d="M106 63 H122 M116 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="124" y="40" width="90" height="46" rx="2"/>
+        <text class="dg-t" x="136" y="61">Intel Pin</text><text class="dg-s" x="136" y="75">instrument</text>
+        <path class="dg-a" d="M218 63 H234 M228 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="236" y="40" width="94" height="46" rx="2"/>
+        <text class="dg-t" x="248" y="61">Memory</text><text class="dg-t" x="248" y="75">trace</text>
+        <path class="dg-a" d="M334 63 H350 M344 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="352" y="40" width="96" height="46" rx="2"/>
+        <text class="dg-t" x="364" y="61">Cache</text><text class="dg-s" x="364" y="75">model (C++)</text>
+        <path class="dg-a" d="M452 63 H468 M462 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="470" y="40" width="78" height="46" rx="2"/>
+        <text class="dg-t" x="480" y="57">Hit rate</text><text class="dg-t" x="480" y="69">AMAT</text><text class="dg-t" x="480" y="81">Cycles</text>
+        <text class="dg-cap" x="236" y="108">config sweep: size · associativity · line · policy</text>
+      </svg>
+    </article>
 
-        <article class="entry" data-tags="embedded">
-          <h3>Maskless lithography machine, <span class="org">HackerFab</span></h3>
-          <p class="meta"><span>LED illumination &amp; thermal subsystem</span></p>
+    <!-- 04 -->
+    <article class="feat" style="--accent:var(--embedded)">
+      <div>
+        <p class="fnum">04</p>
+        <h3>EMG wearable sensing system</h3>
+        <p class="tags">C++ · ESP32 · Embedded · Biotron</p>
+        <p class="desc">Developed real-time embedded C++ for an ESP32-based EMG acquisition system sustaining 1 kHz sampling over 8-hour runs, and rebuilt the analog signal path to lift muscle activation above the noise floor.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">1 kHz</div><div class="k">sampling rate</div></div>
+          <div class="spec"><div class="v">8 h</div><div class="k">continuous runs</div></div>
+          <div class="spec"><div class="v">1%</div><div class="k">dropped samples</div></div>
+        </div>
+        <div class="plinks">
+          <button type="button" data-toggle="d4" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d4" hidden>
           <ul>
-            <li>Designed the LED illumination and thermal monitoring PCB in KiCad with LED drivers, thermistor feedback, and power delivery, meeting JLCPCB manufacturing rules.</li>
-            <li>Analyzed heat dissipation and selected heatsinks and airflow routing, holding LED operating conditions stable for consistent exposure.</li>
-            <li>Assembled, tested, and calibrated the board through bring-up, debugging it into a working subsystem.</li>
-          </ul>
-        </article>
-
-        <article class="entry" data-tags="embedded software">
-          <h3>Conductive Hydrodynamic Ink Printer, <span class="org">UWNRG</span></h3>
-          <p class="meta"><span>3-axis motion control</span></p>
-          <ul>
-            <li>Programmed Marlin firmware in C++ to synchronize steppers and drive lead screw logic, holding accurate position across all three printer axes.</li>
-            <li>Designed stepper driver PCBs in KiCad, then assembled and tested them, confirming clean signal interfacing between firmware and motors.</li>
-            <li>Modeled the cartridge mount, vertical lead screw drive, and baseplate holders in SolidWorks, holding tolerances that minimize backlash in the motion system.</li>
-          </ul>
-        </article>
-
-        <article class="entry" data-tags="embedded software">
-          <h3>EMG wearable sensing system, <span class="org">Biotron</span></h3>
-          <p class="meta"><span>Embedded software team</span></p>
-          <ul>
-            <li>Developed embedded C++ for the ESP32 with real-time sensor interfaces and modular firmware, enabling continuous data acquisition.</li>
+            <li>Developed embedded C++ for the ESP32 with real-time sensor interfaces and modular firmware, sustaining 1 kHz sampling across 8-hour continuous runs.</li>
             <li>Debugged communication protocols, timing behavior, and data integrity under real-time constraints, resolving hardware and software integration failures.</li>
             <li>Rebuilt the analog signal path on an EMG fabric prototype through wiring, grounding, and sensor placement changes, lifting muscle activation signal clarity above the noise floor.</li>
-            <li>Validated the acquisition chain over repeated trials, confirming consistent and reliable output.</li>
+            <li>Validated the acquisition chain over repeated long-duration trials, holding dropped samples to 1%.</li>
           </ul>
-        </article>
-
-        <article class="entry" data-tags="analog">
-          <h3>Triboelectric nanogenerator</h3>
-          <p class="meta"><span>Nov – Dec 2025</span></p>
-          <ul>
-            <li>Developed a triboelectric nanogenerator with a team of four, reaching a peak output of 8.16 V.</li>
-            <li>Designed the turbine in SolidWorks and optimized blade aerodynamics, improving energy conversion efficiency.</li>
-          </ul>
-        </article>
-
+        </div>
       </div>
-      <p class="emptynote" id="emptynote">No projects in that category yet. Pick another filter.</p>
-
-    </div>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Acquisition chain from EMG fabric electrodes through a low-noise analog front end and ADC to ESP32 firmware and signal processing output">
+        <text class="dg-cap" x="14" y="20">acquisition chain</text>
+        <rect class="dg-box" x="12" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="24" y="61">EMG fabric</text><text class="dg-s" x="24" y="75">electrodes</text>
+        <path class="dg-a" d="M108 63 H124 M118 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="126" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="138" y="61">Analog</text><text class="dg-s" x="138" y="75">low-noise</text>
+        <path class="dg-a" d="M222 63 H238 M232 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="240" y="40" width="68" height="46" rx="2"/>
+        <text class="dg-t" x="258" y="67">ADC</text>
+        <path class="dg-a" d="M312 63 H328 M322 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="330" y="40" width="98" height="46" rx="2"/>
+        <text class="dg-t" x="342" y="61">ESP32</text><text class="dg-s" x="342" y="75">firmware (C++)</text>
+        <path class="dg-a" d="M432 63 H448 M442 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="450" y="40" width="98" height="46" rx="2"/>
+        <text class="dg-t" x="462" y="61">Processing</text><text class="dg-s" x="462" y="75">→ output</text>
+        <text class="dg-cap" x="330" y="108">validated over repeated trials</text>
+      </svg>
+    </article>
   </div>
 </section>
 
-<!-- ============ RESEARCH ============ -->
-<section class="band" id="research" style="--accent:var(--research)">
+<!-- ==================== ALL PROJECTS ==================== -->
+<section id="allprojects">
   <div class="wrap">
-    <div class="rail">
-      <span class="swatch" style="background:var(--research)"></span>
-      <h2>Research</h2>
+    <div class="shead">
+      <h2>All projects</h2>
+      <span class="note">filter by discipline</span>
     </div>
-    <div>
 
-      <article class="entry">
-        <h3>Research Assistant, Quantum Photonics &amp; Electronics, <span class="org">Institute for Quantum Computing</span></h3>
-        <p class="meta"><span>Jan 2025 – Present</span><span>Waterloo, Canada</span></p>
+    <div class="filter" role="group" aria-label="Filter projects">
+      <button type="button" data-f="all" aria-pressed="true">All</button>
+      <button type="button" data-f="asic" aria-pressed="false">ASIC / RTL</button>
+      <button type="button" data-f="analog" aria-pressed="false">Analog</button>
+      <button type="button" data-f="embedded" aria-pressed="false">Embedded</button>
+      <button type="button" data-f="software" aria-pressed="false">Software</button>
+      <button type="button" data-f="mech" aria-pressed="false">Mechatronics</button>
+    </div>
+
+    <div class="grid" id="grid">
+
+      <article class="card" data-tags="asic analog embedded" style="--accent:var(--asic)">
+        <h4>ASIC optical autoalignment</h4>
+        <p class="tags">Mixed-signal · RTL · DSP</p>
+        <p>Closed-loop optical alignment combining an analog front end, X/Y DSP, and actuator control for silicon tape-out.</p>
+        <div class="plinks"><a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a><a href="#projects">Details →</a></div>
+      </article>
+
+      <article class="card" data-tags="asic software" style="--accent:var(--asic)">
+        <h4>Ethernet MAC receive pipeline</h4>
+        <p class="tags">SystemVerilog · Verification</p>
+        <p>10 Gb/s MAC receive datapath with pipelined CRC-32, asynchronous FIFO clock domain crossing, and AXI-Stream output.</p>
+        <div class="plinks"><a href="https://github.com/victoriatjhin/10G-Ethernet-Parser" target="_blank" rel="noopener">GitHub →</a><a href="#projects">Details →</a></div>
+      </article>
+
+      <article class="card" data-tags="asic embedded" style="--accent:var(--asic)">
+        <h4>SPI-controlled PWM peripheral</h4>
+        <p class="tags">Verilog · Tiny Tapeout</p>
+        <p>Register-mapped peripheral with duty cycle generation and output enable, verified across a 100 kHz SPI bus and a 10 MHz system clock. Submitted for fabrication.</p>
+        <div class="plinks"><a href="https://github.com/victoriatjhin/SPI-Controlled-16-Channel-PWM-Peripheral-" target="_blank" rel="noopener">GitHub →</a></div>
+      </article>
+
+      <article class="card" data-tags="analog" style="--accent:var(--analog)">
+        <h4>Two-stage CMOS operational amplifier</h4>
+        <p class="tags">130 nm · Xschem · Magic VLSI</p>
+        <p>Differential-input, single-ended-output op-amp sized within a 5 mW budget, taken from schematic to DRC-clean and LVS-matched layout.</p>
+        <div class="plinks"><a href="https://github.com/victoriatjhin/vik_lyn__Analog_Bootcamp" target="_blank" rel="noopener">GitHub →</a></div>
+      </article>
+
+      <article class="card" data-tags="software" style="--accent:var(--software)">
+        <h4>Cycle-accurate cache simulator</h4>
+        <p class="tags">C++ · Intel Pin</p>
+        <p>Configurable set-associative cache model driven by 50M+ memory references, reporting hit rate, AMAT, and total cycles.</p>
+        <div class="plinks"><a href="https://github.com/victoriatjhin/cache-simulator" target="_blank" rel="noopener">GitHub →</a><a href="#projects">Details →</a></div>
+      </article>
+
+      <article class="card" data-tags="embedded" style="--accent:var(--embedded)">
+        <h4>Maskless lithography machine</h4>
+        <p class="tags">KiCad · PCB · Thermal · HackerFab</p>
+        <p>LED illumination and thermal monitoring PCB with LED drivers, thermistor feedback, and power delivery, brought up through assembly, test, and calibration.</p>
+      </article>
+
+      <article class="card" data-tags="embedded software mech" style="--accent:var(--embedded)">
+        <h4>Conductive hydrodynamic ink printer</h4>
+        <p class="tags">C++ · Marlin · KiCad · SolidWorks · UWNRG</p>
+        <p>Firmware for 3-axis motion control, stepper driver PCBs, and mechanical subsystems held to tolerances that minimize backlash.</p>
+      </article>
+
+      <article class="card" data-tags="embedded software" style="--accent:var(--embedded)">
+        <h4>EMG wearable sensing system</h4>
+        <p class="tags">C++ · ESP32 · Biotron</p>
+        <p>Real-time embedded firmware sustaining 1 kHz sampling over 8-hour runs, plus a rebuilt low-noise analog signal path.</p>
+        <div class="plinks"><a href="#projects">Details →</a></div>
+      </article>
+
+      <article class="card" data-tags="analog mech" style="--accent:var(--analog)">
+        <h4>Triboelectric nanogenerator</h4>
+        <p class="tags">SolidWorks · Energy harvesting</p>
+        <p>Turbine-driven nanogenerator reaching 8.16 V peak output, with blade aerodynamics optimized for conversion efficiency.</p>
+      </article>
+
+    </div>
+    <p class="note mono" id="emptynote" style="display:none;margin-top:18px;color:var(--dim)">Nothing in that category.</p>
+  </div>
+</section>
+
+<!-- ==================== EXPERIENCE ==================== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="shead"><h2>Experience</h2></div>
+
+    <article class="xp" style="--accent:var(--software)">
+      <p class="org">Institute for Quantum Computing</p>
+      <p class="rol">Research Assistant · Quantum Photonics &amp; Electronics</p>
+      <p class="when">Jan 2025 – Present · Waterloo, Canada</p>
+      <p class="sum">Developing CNT-based quantum photonic devices and the automated analysis pipelines behind them.</p>
+      <div class="pillars">
+        <div class="pillar"><h5>Device fabrication</h5><p>CNT functionalization, thin-film deposition, single photon detectors</p></div>
+        <div class="pillar"><h5>Characterization</h5><p>UV-Vis, Raman spectroscopy, SEM</p></div>
+        <div class="pillar"><h5>Computational analysis</h5><p>Python, NumPy, SciPy, design of experiments</p></div>
+      </div>
+      <div class="specs">
+        <div class="spec"><div class="v">~90%</div><div class="k">less spectral analysis time</div></div>
+        <div class="spec"><div class="v">~99.9%</div><div class="k">CNT purity after sorting</div></div>
+      </div>
+      <div class="plinks"><button type="button" data-toggle="x1" aria-expanded="false">Details →</button></div>
+      <div class="details" id="x1" hidden>
         <ul>
           <li>Built a Python pipeline with NumPy and SciPy to automate UV-Vis spectral analysis, cutting processing time by roughly 90% and improving repeatability across runs.</li>
           <li>Designed the analysis workflow that identifies optimal carbon nanotube lengths from experimental datasets using statistical design of experiments.</li>
           <li>Fabricated CNT-based single photon detectors by functionalizing nanotubes with photosensitive proteins, enabling photon to electrical signal transduction.</li>
           <li>Synthesized and sorted carbon nanotubes with a tip sonicator and ultracentrifuge, reaching roughly 99.9% purity.</li>
           <li>Deposited CNT thin-film sensors on silicon substrates by drop-casting and roll-coating, tuning parameters for film uniformity and electrical sensitivity.</li>
-          <li>Characterized devices with UV-Vis, Raman spectroscopy, and SEM, confirming purity and uniform dispersion.</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
-      <article class="entry">
-        <h3>Undergraduate Research Assistant, <span class="org">Waterloo Institute for Nanotechnology</span></h3>
-        <p class="meta"><span>Sep – Dec 2025</span><span>Waterloo, Canada</span></p>
+    <article class="xp" style="--accent:var(--analog)">
+      <p class="org">Ontario Battery &amp; Electrochemistry Research Centre</p>
+      <p class="rol">Battery Engineering Intern</p>
+      <p class="when">Waterloo, Canada</p>
+      <p class="sum">Prototyped lithium-ion coin and pouch cells end to end, then analyzed the process parameters that drive cell consistency.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">20%</div><div class="k">better cell consistency</div></div>
+      </div>
+      <div class="plinks"><button type="button" data-toggle="x2" aria-expanded="false">Details →</button></div>
+      <div class="details" id="x2" hidden>
+        <ul>
+          <li>Prototyped lithium-ion coin and pouch cells from slurry preparation through roll-to-roll electrode coating, tab welding, and glovebox assembly.</li>
+          <li>Analyzed electrode porosity, calendering pressure, and coating temperature across build runs, improving cell consistency and performance by 20%.</li>
+          <li>Characterized cells on Maccor cyclers using Electrochemical Impedance Spectroscopy, quantifying internal resistance, energy density, and C-rate behavior.</li>
+          <li>Authored SOPs and equipment documentation for the fabrication line, keeping results reproducible across operators.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="xp" style="--accent:var(--software)">
+      <p class="org">Scotiabank</p>
+      <p class="rol">Workplace Transformation Analyst</p>
+      <p class="when">Jan – Apr 2025 · Toronto, Canada</p>
+      <p class="sum">Queried and analyzed workspace utilization data in SQL to drive a large-scale retrofit decision.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">80%</div><div class="k">inefficiencies identified</div></div>
+        <div class="spec"><div class="v">23</div><div class="k">workspaces approved</div></div>
+        <div class="spec"><div class="v">13,000+</div><div class="k">employees affected</div></div>
+      </div>
+      <div class="plinks"><button type="button" data-toggle="x3" aria-expanded="false">Details →</button></div>
+      <div class="details" id="x3" hidden>
+        <ul>
+          <li>Analyzed workspace utilization data across six work ecosystems in SQL and Excel, cutting identified inefficiencies by 80%.</li>
+          <li>Built a retrofit proposal from that analysis, securing executive approval for 23 underutilized workspaces.</li>
+          <li>Delivered ad-hoc strategic analysis to executive leadership, shaping sustainment strategy for over 13,000 employees.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="xp" style="--accent:var(--embedded)">
+      <p class="org">Waterloo Chemical Engineering</p>
+      <p class="rol">Undergraduate Research Assistant</p>
+      <p class="when">Sep – Dec 2025 · Waterloo, Canada</p>
+      <p class="sum">Designed and iterated an electrochemical graphene-exfoliation setup in SolidWorks, translating the assembly into fabrication-ready components.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">~99.9%</div><div class="k">graphene purity</div></div>
+        <div class="spec"><div class="v">87%</div><div class="k">yield</div></div>
+      </div>
+      <div class="plinks"><button type="button" data-toggle="x4" aria-expanded="false">Details →</button></div>
+      <div class="details" id="x4" hidden>
+        <ul>
+          <li>Synthesized graphene sheets by electrochemical exfoliation, pump filtration, and bath sonication, reaching roughly 99.9% purity at 87% yield.</li>
+          <li>Performed electrospinning to produce nanofibers, optimizing fire-retardant and superhydrophobic properties.</li>
+          <li>Authored the literature review and research proposal that shaped the experimental design.</li>
+          <li>Conducted SEM analysis for nanofiber characterization, guiding material performance tuning.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="xp" style="--accent:var(--analog)">
+      <p class="org">Waterloo Institute for Nanotechnology</p>
+      <p class="rol">Undergraduate Research Assistant</p>
+      <p class="when">Sep – Dec 2025 · Waterloo, Canada</p>
+      <p class="sum">Applied nanosynthesis to produce wood fiber for water and air filtration, characterizing particle dispersion and distribution.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">~99%</div><div class="k">less microplastic dispersal</div></div>
+      </div>
+      <div class="plinks"><button type="button" data-toggle="x5" aria-expanded="false">Details →</button></div>
+      <div class="details" id="x5" hidden>
         <ul>
           <li>Applied nanosynthesis techniques to produce wood fiber for water and air filtration, reducing dispersal of microplastics and anionic substances by roughly 99%.</li>
           <li>Performed zeta potential analysis on anionic surfactants, stabilizing and optimizing wood fiber particle dispersion.</li>
           <li>Operated particle size analyzers and optical particle counters, characterizing microplastic and surfactant distributions.</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
-      <article class="entry">
-        <h3>Undergraduate Research Assistant, <span class="org">Waterloo Chemical Engineering</span></h3>
-        <p class="meta"><span>Sep – Dec 2025</span><span>Waterloo, Canada</span></p>
+    <article class="xp" style="--accent:var(--software)">
+      <p class="org">Triputra Agro Persada</p>
+      <p class="rol">Carbon Manager Intern</p>
+      <p class="when">May – Jul 2025 · Jakarta, Indonesia</p>
+      <p class="sum">Modeled carbon emissions and credit yield for a methane capture project, validated against ISO 14064-1 for government verification.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">10–15%</div><div class="k">more carbon credit output</div></div>
+      </div>
+      <div class="plinks"><button type="button" data-toggle="x6" aria-expanded="false">Details →</button></div>
+      <div class="details" id="x6" hidden>
         <ul>
-          <li>Synthesized graphene sheets by electrochemical exfoliation, pump filtration, and bath sonication, reaching roughly 99.9% purity at 87% yield.</li>
-          <li>Performed electrospinning to produce nanofibers, optimizing fire-retardant and superhydrophobic properties.</li>
-          <li>Designed the electrochemical exfoliation setup in SolidWorks and authored the literature review and research proposal, shaping the experimental design.</li>
-          <li>Conducted SEM analysis for nanofiber characterization, guiding material performance tuning.</li>
+          <li>Modeled annual carbon emissions and credit yield for a methane capture project using stoichiometric balances and advanced Excel functions, turning raw plant data into auditable figures.</li>
+          <li>Validated the model against ISO 14064-1 reporting requirements and assembled the documentation submitted for official government verification.</li>
+          <li>Led sustainability projects with the project management department, securing partnerships and land acquisition that raised carbon credit output by 10 to 15%.</li>
         </ul>
-      </article>
+      </div>
+    </article>
 
+  </div>
+</section>
+
+<!-- ==================== SKILLS ==================== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="shead">
+      <h2>Technical skills</h2>
+      <span class="note">and what I've built with each</span>
+    </div>
+
+    <div style="margin-bottom:clamp(28px,4vw,44px)">
+    <p class="skillline">C++ · Python · SystemVerilog · Verilog · SQL</p>
+    <p class="skillline dimline">ASIC · RTL · DSP · Embedded · PCB · Computer Architecture</p>
+    </div>
+
+    <div class="swgrid">
+      <div class="sw">
+        <h3>C++</h3>
+        <p class="sub">systems · embedded</p>
+        <ul>
+          <li><a href="https://github.com/victoriatjhin/cache-simulator" target="_blank" rel="noopener">Cycle-accurate cache simulator</a></li>
+          <li>ESP32 real-time acquisition firmware</li>
+          <li>Marlin motion-control firmware</li>
+          <li>Bitwise address decoding and performance tuning</li>
+        </ul>
+      </div>
+      <div class="sw">
+        <h3>Python</h3>
+        <p class="sub">scientific computing</p>
+        <ul>
+          <li>Automated UV-Vis spectral analysis pipeline</li>
+          <li>NumPy and SciPy statistical workflows</li>
+          <li>Design of experiments over instrument data</li>
+          <li>Experimental automation at IQC</li>
+        </ul>
+      </div>
+      <div class="sw">
+        <h3>SQL</h3>
+        <p class="sub">data analysis</p>
+        <ul>
+          <li>Workplace utilization analytics at Scotiabank</li>
+          <li>Querying and cleaning large operational datasets</li>
+          <li>Analysis behind a 23-workspace retrofit decision</li>
+        </ul>
+      </div>
+      <div class="sw">
+        <h3>Verilog / SystemVerilog</h3>
+        <p class="sub">RTL &amp; verification</p>
+        <ul>
+          <li><a href="https://github.com/victoriatjhin/10G-Ethernet-Parser" target="_blank" rel="noopener">Ethernet MAC receive pipeline</a></li>
+          <li><a href="https://github.com/victoriatjhin/SPI-Controlled-16-Channel-PWM-Peripheral-" target="_blank" rel="noopener">SPI-controlled PWM peripheral</a></li>
+          <li>Parallel X/Y DSP pipeline for closed-loop control</li>
+          <li>Testbenches for protocol compliance and CDC</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==================== EDUCATION ==================== -->
+<section id="education">
+  <div class="wrap">
+    <div class="shead"><h2>Education</h2></div>
+    <p class="sch">University of Waterloo</p>
+    <p class="deg">BSc Honours, Nanotechnology Engineering</p>
+    <p class="fine">2024 – 2029</p>
+    <dl style="margin:18px 0 0;max-width:640px">
+      <div class="skillrow"><dt>GPA</dt><dd>3.92 / 4.00</dd></div>
+      <div class="skillrow"><dt>Awards</dt><dd>Consecutive Term Distinction</dd></div>
+      <div class="skillrow"><dt>Also studied</dt><dd>Chemical Engineering, 2024 – 2025</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ==================== LEADERSHIP ==================== -->
+<section id="leadership">
+  <div class="wrap">
+    <div class="shead"><h2>Leadership</h2></div>
+    <div class="swgrid">
+      <div class="sw">
+        <h3 style="font-size:18px">Waterloo Nanotechnology Conference</h3>
+        <p class="sub">Sponsorship &amp; External Affairs Director</p>
+        <ul><li>Secured sponsorship from 8 companies and recruited 11 academic and industry speakers for an event with 200+ attendees.</li></ul>
+      </div>
+      <div class="sw">
+        <h3 style="font-size:18px">Institute for Quantum Computing</h3>
+        <p class="sub">Quantum Computing Educator</p>
+        <ul><li>Taught high school students an introduction to quantum computing, covering qubits, superposition, and quantum photonics.</li></ul>
+      </div>
+      <div class="sw">
+        <h3 style="font-size:18px">Engineering Orientation (O-Week)</h3>
+        <p class="sub">Front-line Leader</p>
+        <ul><li>Guided incoming engineering students through orientation week, easing their transition into the program.</li></ul>
+      </div>
+      <div class="sw">
+        <h3 style="font-size:18px">Engineering Society</h3>
+        <p class="sub">Professional Network Executive</p>
+        <ul><li>Organized student professional events, coordinating logistics and attendee experience end to end.</li></ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ VOLUNTEERING ============ -->
-<section class="band" id="volunteering" style="--accent:var(--volunteer)">
+<!-- ==================== CONTACT ==================== -->
+<section id="contact">
   <div class="wrap">
-    <div class="rail">
-      <span class="swatch" style="background:var(--volunteer)"></span>
-      <h2>Volunteering &amp; leadership</h2>
-    </div>
-    <div>
-
-      <article class="entry">
-        <h3>Sponsorship &amp; External Affairs Director, <span class="org">Waterloo Nanotechnology Conference</span></h3>
-        <p class="meta"><span>Jul 2025 – Present</span></p>
-        <ul>
-          <li>Led sponsorship outreach across industry and startups, securing funding from 8 companies.</li>
-          <li>Researched and invited 11 academic and industry speakers, drawing over 200 attendees.</li>
-          <li>Coordinated on-site logistics and attendee support throughout the event.</li>
-        </ul>
-      </article>
-
-      <article class="entry">
-        <h3>Quantum Computing Educator, <span class="org">Institute for Quantum Computing</span></h3>
-        <p class="meta"><span>Jun 2026</span><span>Outreach</span></p>
-        <ul>
-          <li>Taught high school students an introduction to quantum computing, covering qubits, superposition, and quantum photonics.</li>
-        </ul>
-      </article>
-
-      <article class="entry">
-        <h3>Co-chair, Student Development Group, <span class="org">Scotiabank</span></h3>
-        <p class="meta"><span>Jan – Apr 2025</span></p>
-        <ul>
-          <li>Led a student social group of over 20 members, driving networking opportunities and EDI initiatives that built cultural awareness and belonging.</li>
-          <li>Collaborated with internal groups on event logistics and programming, expanding participation.</li>
-        </ul>
-      </article>
-
-      <article class="entry">
-        <h3>Professional Network Executive, <span class="org">Engineering Society</span></h3>
-        <p class="meta"><span>University of Waterloo</span></p>
-        <ul>
-          <li>Organized student professional events, coordinating logistics and attendee experience end to end.</li>
-        </ul>
-      </article>
-
-      <article class="entry">
-        <h3>Front-line Leader, <span class="org">Engineering Orientation</span></h3>
-        <p class="meta"><span>Sep 2026</span><span>University of Waterloo</span></p>
-        <ul>
-          <li>Guided incoming engineering students through orientation week, easing their transition into the program.</li>
-        </ul>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-  </div>
-</div>
-
-<section class="band" id="contact" style="--accent:var(--ink);border-bottom:none">
-  <div class="wrap">
-    <div class="rail">
-      <span class="swatch" style="background:var(--ink)"></span>
-      <h2>Contact</h2>
-    </div>
-    <div class="skills">
-      <div class="skillcol">
-        <h3>Phone</h3>
-        <p><a href="tel:+14167311868">+1 (416) 731-1868</a></p>
-      </div>
-      <div class="skillcol">
-        <h3>Email</h3>
-        <p><a href="mailto:eetjhin@uwaterloo.ca">eetjhin@uwaterloo.ca</a></p>
-      </div>
-      <div class="skillcol">
-        <h3>LinkedIn</h3>
-        <p><a href="https://www.linkedin.com/in/eetjhin" target="_blank" rel="noopener">linkedin.com/in/eetjhin</a></p>
-      </div>
-      <div class="skillcol">
-        <h3>GitHub</h3>
-        <p><a href="https://github.com/victoriatjhin" target="_blank" rel="noopener">github.com/victoriatjhin</a></p>
-      </div>
+    <div class="shead"><h2>Contact</h2></div>
+    <div class="contactgrid">
+      <div class="cc"><h3>Email</h3><a href="mailto:eetjhin@uwaterloo.ca">eetjhin@uwaterloo.ca</a></div>
+      <div class="cc"><h3>GitHub</h3><a href="https://github.com/victoriatjhin" target="_blank" rel="noopener">github.com/victoriatjhin</a></div>
+      <div class="cc"><h3>LinkedIn</h3><a href="https://www.linkedin.com/in/eetjhin" target="_blank" rel="noopener">linkedin.com/in/eetjhin</a></div>
     </div>
   </div>
 </section>
@@ -620,73 +769,32 @@ footer .wrap{max-width:1120px}
 
 <script>
 (function(){
-  var buttons = document.querySelectorAll('.filter button');
-  var items = document.querySelectorAll('#projectlist .entry');
+  document.querySelectorAll('[data-toggle]').forEach(function(btn){
+    var panel = document.getElementById(btn.getAttribute('data-toggle'));
+    if (!panel) return;
+    btn.addEventListener('click', function(){
+      var opening = panel.hidden;
+      panel.hidden = !opening;
+      btn.setAttribute('aria-expanded', String(opening));
+      btn.textContent = opening ? 'Hide details' : 'Details →';
+    });
+  });
+
+  var fbtns = document.querySelectorAll('.filter button');
+  var cards = document.querySelectorAll('#grid .card');
   var empty = document.getElementById('emptynote');
-
-  function apply(filter){
-    var shown = 0;
-    items.forEach(function(el){
-      var tags = (el.getAttribute('data-tags') || '').split(' ');
-      var show = (filter === 'all') || tags.indexOf(filter) !== -1;
-      el.hidden = !show;
-      if (show) shown++;
-    });
-    empty.style.display = shown ? 'none' : 'block';
-    buttons.forEach(function(b){
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-filter') === filter));
-    });
-  }
-
-  buttons.forEach(function(b){
-    b.addEventListener('click', function(){ apply(b.getAttribute('data-filter')); });
-  });
-
-  /* ---- section deck ---- */
-  var deck   = document.getElementById('deck');
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slides > section'));
-  var tabs   = Array.prototype.slice.call(document.querySelectorAll('.deckdots button'));
-  var arrows = Array.prototype.slice.call(document.querySelectorAll('.deckarrow'));
-  var current = 0;
-
-  function show(i, scroll){
-    current = (i + slides.length) % slides.length;
-    slides.forEach(function(sec, n){ sec.hidden = n !== current; });
-    tabs.forEach(function(t, n){
-      t.setAttribute('aria-selected', String(n === current));
-      t.tabIndex = n === current ? 0 : -1;
-    });
-    if (scroll && deck.getBoundingClientRect().top < 56){
-      window.scrollTo({top: deck.offsetTop - 56, behavior: 'smooth'});
-    }
-  }
-
-  arrows.forEach(function(a){
-    a.addEventListener('click', function(){ show(current + Number(a.getAttribute('data-dir')), true); });
-  });
-  tabs.forEach(function(t){
-    t.addEventListener('click', function(){ show(Number(t.getAttribute('data-i')), true); });
-  });
-
-  document.addEventListener('keydown', function(e){
-    if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key === 'ArrowRight'){ show(current + 1, true); }
-    else if (e.key === 'ArrowLeft'){ show(current - 1, true); }
-  });
-
-  /* top nav and any in-page link targeting a slide opens that slide */
-  document.querySelectorAll('a[href^="#"]').forEach(function(link){
-    var id = link.getAttribute('href').slice(1);
-    var n = slides.findIndex(function(sec){ return sec.id === id; });
-    if (n === -1) return;
-    link.addEventListener('click', function(ev){
-      ev.preventDefault();
-      show(n, false);
-      window.scrollTo({top: deck.offsetTop - 56, behavior: 'smooth'});
+  fbtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-f'), shown = 0;
+      cards.forEach(function(c){
+        var t = (c.getAttribute('data-tags')||'').split(' ');
+        var show = f === 'all' || t.indexOf(f) !== -1;
+        c.hidden = !show; if (show) shown++;
+      });
+      empty.style.display = shown ? 'none' : 'block';
+      fbtns.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
     });
   });
-
-  show(0, false);
 })();
 </script>
 
