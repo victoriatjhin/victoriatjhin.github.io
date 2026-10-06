@@ -202,6 +202,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#hackathons">Hackathons</a>
       <a href="#skills">Skills</a>
       <a href="resume.pdf">Resume</a>
       <a href="#contact">Contact</a>
@@ -242,13 +243,60 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   <div class="wrap">
     <div class="shead">
       <h2>Featured projects</h2>
-      <span class="note">4 of 9 · full list below</span>
+      <span class="note">5 of 10 · full list below</span>
     </div>
 
     <!-- 01 -->
     <article class="feat" style="--accent:var(--asic)">
       <div>
         <p class="fnum">01</p>
+        <h3>TinyTracer ray-tracing chip</h3>
+        <p class="tags">SystemVerilog · UART · cocotb · Tiny Tapeout · UWASIC</p>
+        <p class="desc">A small ray-tracing graphics chip for Tiny Tapeout. A host sends a 3D scene over UART, the chip renders it one pixel at a time, and streams the pixels back over the same link. I'm building the UART RTL and its verification.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">32</div><div class="k">samples per pixel</div></div>
+          <div class="spec"><div class="v">8</div><div class="k">bounces</div></div>
+          <div class="spec"><div class="v">16-bit</div><div class="k">arithmetic</div></div>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/uw-asic/TinyTracer" target="_blank" rel="noopener">GitHub →</a>
+          <a href="https://uw-asic.github.io/TinyTracer/" target="_blank" rel="noopener">Docs →</a>
+          <button type="button" data-toggle="d0" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d0" hidden>
+          <ul>
+            <li>Designing the UART RTL in SystemVerilog that carries the scene from the host into the chip and streams rendered pixels back out over the same link.</li>
+            <li>Verifying the UART with a cocotb testbench run under Verilator, as part of the project's RTL simulation suite.</li>
+            <li>Working within the Tiny Tapeout flow: modules share constants and types through a common package and interfaces, referenced by qualified name for compatibility with the flow's Yosys version.</li>
+            <li>The team cross-checks the RTL against a C++ software model that renders scenes with the chip's 16-bit arithmetic and counts cycles.</li>
+          </ul>
+        </div>
+      </div>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Host sends a scene over UART receive into the ray tracer core, which renders pixels with up to 32 samples and 8 bounces, then streams them out through UART transmit back to the host">
+        <text class="dg-cap" x="14" y="20">render loop over one serial link</text>
+        <rect class="dg-box" x="12" y="40" width="80" height="46" rx="2"/>
+        <text class="dg-t" x="24" y="61">Host</text><text class="dg-s" x="24" y="75">device</text>
+        <path class="dg-a" d="M96 63 H112 M106 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="114" y="40" width="86" height="46" rx="2"/>
+        <text class="dg-t" x="126" y="61">UART RX</text><text class="dg-s" x="126" y="75">scene in</text>
+        <path class="dg-a" d="M204 63 H220 M214 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="222" y="40" width="116" height="46" rx="2"/>
+        <text class="dg-t" x="234" y="61">Ray tracer</text><text class="dg-s" x="234" y="75">32 spp · 8 bounce</text>
+        <path class="dg-a" d="M342 63 H358 M352 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="360" y="40" width="78" height="46" rx="2"/>
+        <text class="dg-t" x="372" y="61">Pixel</text><text class="dg-s" x="372" y="75">output</text>
+        <path class="dg-a" d="M442 63 H458 M452 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="460" y="40" width="88" height="46" rx="2"/>
+        <text class="dg-t" x="472" y="61">UART TX</text><text class="dg-s" x="472" y="75">pixels out</text>
+        <path class="dg-a" d="M504 90 V106 H52 V90 M47 96 l5 -6 5 6" stroke-dasharray="3 3"/>
+        <text class="dg-cap" x="214" y="120">same link back to host</text>
+      </svg>
+    </article>
+
+    <!-- 02 -->
+    <article class="feat" style="--accent:var(--asic)">
+      <div>
+        <p class="fnum">02</p>
         <h3>ASIC optical autoalignment system</h3>
         <p class="tags">Mixed-signal ASIC · RTL · DSP · SSCS 2026 Chipathon</p>
         <p class="desc">Engineered a mixed-signal front end to extract vibration-synchronous alignment error from photodetector current, feeding a 50 MHz X/Y closed-loop controller headed for silicon tape-out.</p>
@@ -291,10 +339,10 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 02 -->
+    <!-- 03 -->
     <article class="feat" style="--accent:var(--asic)">
       <div>
-        <p class="fnum">02</p>
+        <p class="fnum">03</p>
         <h3>Ethernet MAC receive pipeline</h3>
         <p class="tags">SystemVerilog · RTL · Verification · UWASIC</p>
         <p class="desc">Built a 10 Gb/s Ethernet MAC receive pipeline in SystemVerilog, spanning PCS decoding, CRC-32 validation, clock domain crossing, and AXI-Stream output.</p>
@@ -337,10 +385,10 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 03 -->
+    <!-- 04 -->
     <article class="feat" style="--accent:var(--software)">
       <div>
-        <p class="fnum">03</p>
+        <p class="fnum">04</p>
         <h3>Cycle-accurate cache simulator</h3>
         <p class="tags">C++ · Intel Pin · Computer architecture</p>
         <p class="desc">Built a cycle-accurate C++ cache simulator and drove it with 50M+ Intel Pin memory references to evaluate cache performance across configurations, then profiled it to 4× faster execution.</p>
@@ -382,10 +430,10 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 04 -->
+    <!-- 05 -->
     <article class="feat" style="--accent:var(--embedded)">
       <div>
-        <p class="fnum">04</p>
+        <p class="fnum">05</p>
         <h3>EMG wearable sensing system</h3>
         <p class="tags">C++ · ESP32 · Embedded · Biotron</p>
         <p class="desc">Developed real-time embedded C++ for an ESP32-based EMG acquisition system sustaining 1 kHz sampling over 8-hour runs, and rebuilt the analog signal path to lift muscle activation above the noise floor.</p>
@@ -446,6 +494,13 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     </div>
 
     <div class="grid" id="grid">
+
+      <article class="card" data-tags="asic" style="--accent:var(--asic)">
+        <h4>TinyTracer ray-tracing chip</h4>
+        <p class="tags">SystemVerilog · UART · cocotb · Tiny Tapeout</p>
+        <p>Ray-tracing graphics chip that receives a 3D scene over UART and streams rendered pixels back. I'm building the UART RTL and verification.</p>
+        <div class="plinks"><a href="https://github.com/uw-asic/TinyTracer" target="_blank" rel="noopener">GitHub →</a><a href="#projects">Details →</a></div>
+      </article>
 
       <article class="card" data-tags="asic analog embedded" style="--accent:var(--asic)">
         <h4>ASIC optical autoalignment</h4>
@@ -641,6 +696,39 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
+<!-- ==================== HACKATHONS ==================== -->
+<section id="hackathons">
+  <div class="wrap">
+    <div class="shead">
+      <h2>Hackathons &amp; Chipathons</h2>
+      <span class="note">building under a deadline</span>
+    </div>
+
+    <article class="xp" style="--accent:var(--asic)">
+      <p class="org">IEEE SSCS 2026 Chipathon</p>
+      <p class="rol">ASIC optical autoalignment system · Mixed-signal ASIC · RTL · DSP</p>
+      <p class="when">2026</p>
+      <p class="sum">Joined the IEEE SSCS 2026 Chipathon. Designing a mixed-signal front end and a parallel X/Y RTL DSP pipeline that extract vibration-synchronous alignment error from photodetector current and drive a 50 MHz closed-loop optical alignment controller headed for tape-out.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">50 MHz</div><div class="k">control loop</div></div>
+        <div class="spec"><div class="v">40%</div><div class="k">latency reduction</div></div>
+      </div>
+      <div class="plinks">
+        <a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a>
+        <a href="#projects">Project details →</a>
+      </div>
+    </article>
+
+    <article class="xp" style="--accent:var(--gold)">
+      <p class="org">Hack the Valley</p>
+      <p class="rol">Hackathon · University of Toronto Scarborough</p>
+      <p class="when">2026 · Toronto, Canada</p>
+      <p class="sum">Joined Hack the Valley, a hackathon hosted at the University of Toronto Scarborough.</p>
+    </article>
+
+  </div>
+</section>
+
 <!-- ==================== SKILLS ==================== -->
 <section id="skills">
   <div class="wrap">
@@ -688,6 +776,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <h3>Verilog / SystemVerilog</h3>
         <p class="sub">RTL &amp; verification</p>
         <ul>
+          <li><a href="https://github.com/uw-asic/TinyTracer" target="_blank" rel="noopener">TinyTracer UART RTL and cocotb verification</a></li>
           <li><a href="https://github.com/victoriatjhin/10G-Ethernet-Parser" target="_blank" rel="noopener">Ethernet MAC receive pipeline</a></li>
           <li><a href="https://github.com/victoriatjhin/SPI-Controlled-16-Channel-PWM-Peripheral-" target="_blank" rel="noopener">SPI-controlled PWM peripheral</a></li>
           <li>Parallel X/Y DSP pipeline for closed-loop control</li>
