@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Victoria Tjhin | Hardware, Silicon and Software Engineering</title>
-<meta name="description" content="Victoria Tjhin, Nanotechnology Engineering at the University of Waterloo. Mixed-signal ASIC design, RTL and verification, computer architecture, embedded C++, and scientific computing.">
+<meta name="description" content="Victoria Tjhin, Nanotechnology Engineering at the University of Waterloo. Mixed-signal ASIC design, RTL and verification, computer architecture, embedded C++, AI software and hardware, and scientific computing.">
 <link rel="canonical" href="https://victoriatjhin.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Victoria Tjhin">
 <meta property="og:url" content="https://victoriatjhin.github.io/">
 <meta property="og:title" content="Victoria Tjhin | Hardware, Silicon and Software Engineering">
-<meta property="og:description" content="Mixed-signal ASIC design, RTL and verification, computer architecture, embedded C++, and scientific computing.">
+<meta property="og:description" content="Mixed-signal ASIC design, RTL and verification, computer architecture, embedded C++, AI software and hardware, and scientific computing.">
 <meta property="og:image" content="https://victoriatjhin.github.io/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -91,6 +91,18 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .shead{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
 .shead h2{font-size:clamp(26px,4vw,42px);letter-spacing:-.03em;font-weight:700;margin:0;line-height:1}
 .shead .note{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);margin-left:auto}
+
+/* ---------- recent achievements ---------- */
+#recent{padding:clamp(40px,6vw,72px) 0}
+.wins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.wins{grid-template-columns:1fr}}
+.win{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(224,181,68,.10),rgba(224,181,68,0) 55%),var(--surface);border:1px solid var(--hair);border-top:3px solid var(--gold);padding:24px 24px 22px;--accent:var(--gold)}
+.win .kick{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
+.win .kick svg{width:14px;height:14px;fill:var(--gold)}
+.win h3{font-size:clamp(19px,2.2vw,23px);letter-spacing:-.02em;font-weight:700;line-height:1.2;margin:0 0 10px}
+.win p.what{font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 18px;max-width:52ch}
+.win p.what b{color:var(--ink);font-weight:600}
+.badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:#000;background:var(--gold);padding:3px 9px;border-radius:2px;margin:0 0 12px;font-weight:500}
 
 /* ---------- featured project ---------- */
 .feat{border-top:1px solid var(--hair);padding:clamp(32px,4.5vw,56px) 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:start}
@@ -218,8 +230,8 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
 <div class="hero">
   <div class="wrap">
     <h1>Victoria Tjhin</h1>
-    <p class="role"><b>Hardware</b> • <b>Silicon</b> • <b>Embedded</b> • <b>Software</b></p>
-    <p class="stackline"><span class="gold">Nanotechnology Engineering @ Waterloo</span> &nbsp;|&nbsp; ASIC · RTL · C++ · Python</p>
+    <p class="role"><b>Hardware</b> • <b>Silicon</b> • <b>Embedded</b> • <b>Software</b> • <b>AI</b></p>
+    <p class="stackline"><span class="gold">Nanotechnology Engineering @ Waterloo</span> &nbsp;|&nbsp; ASIC · RTL · C++ · Python · AI</p>
     <div class="cta">
       <a class="primary" href="resume.pdf">Resume</a>
       <a href="https://github.com/victoriatjhin" target="_blank" rel="noopener">GitHub</a>
@@ -229,13 +241,45 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </div>
 
+<!-- ==================== RECENT ACHIEVEMENTS ==================== -->
+<section id="recent" aria-labelledby="recent-h">
+  <div class="wrap">
+    <div class="shead">
+      <h2 id="recent-h">Recent achievements</h2>
+      <span class="note">a couple I'm proud of</span>
+    </div>
+    <div class="wins">
+      <article class="win">
+        <p class="kick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l2.1 5.4L16 6.1l-4.5 3.8L13 16 8 12.9 3 16l1.5-6.1L0 6.1l5.9-.7z"/></svg> Nominated by IEEE</p>
+        <h3>Our chip was nominated for tape-out</h3>
+        <p class="what">My team's <b>ASIC optical autoalignment system</b> from the <b>IEEE SSCS 2026 Chipathon</b> was nominated by IEEE for tape-out, a step toward seeing our design fabricated in real silicon.</p>
+        <div class="plinks">
+          <a href="#proj-autoalign">Project details →</a>
+          <a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a>
+        </div>
+      </article>
+      <article class="win">
+        <p class="kick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l2.1 5.4L16 6.1l-4.5 3.8L13 16 8 12.9 3 16l1.5-6.1L0 6.1l5.9-.7z"/></svg> Completed Hack the Valley 11</p>
+        <h3>Built SafeStep from idea to demo</h3>
+        <p class="what">Built <b>SafeStep</b>, an AI-powered accessibility and safety app for blind and low-vision users, with YOLO object detection, tuned fall detection, and automatic caregiver SMS alerts.</p>
+        <div class="plinks">
+          <a href="#proj-safestep">Project details →</a>
+          <a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a>
+          <a href="https://www.youtube.com/watch?v=3eUGVj-XgpQ" target="_blank" rel="noopener">Demo video →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ==================== ABOUT ==================== -->
 <section id="about">
   <div class="wrap">
     <div class="shead"><h2>About</h2></div>
     <div class="about">
-      <p>I'm a Nanotechnology Engineering student at the University of Waterloo working at the hardware/software boundary. I design mixed-signal ASICs and RTL, write embedded C++ and systems software, and build the Python tooling that turns experimental data into results.</p>
-      <p>My work spans digital design and verification, analog CMOS layout, computer architecture, PCB design and bring-up, and scientific computing. I'm looking for co-op roles where those overlap.</p>
+      <p>I'm a Nanotechnology Engineering student at the University of Waterloo working at the hardware/software boundary. I design mixed-signal ASICs and RTL, write embedded C++ and systems software, build AI-powered applications, and write the Python tooling that turns experimental data into results.</p>
+      <p>I'm especially interested in AI on both sides of that boundary: the software that puts models to work, like the YOLO-based object detection in <a href="#proj-safestep">SafeStep</a>, and the hardware that runs them, from computer architecture to efficient silicon.</p>
+      <p>My work spans digital design and verification, analog CMOS layout, computer architecture, PCB design and bring-up, and scientific computing. Right now I'm most interested in AI software and hardware, computer architecture, and digital and mixed-signal IC design.</p>
     </div>
   </div>
 </section>
@@ -296,12 +340,13 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     </article>
 
     <!-- 02 -->
-    <article class="feat" style="--accent:var(--asic)">
+    <article class="feat" id="proj-autoalign" style="--accent:var(--asic)">
       <div>
         <p class="fnum">02</p>
         <h3>ASIC optical autoalignment system</h3>
         <p class="tags">Mixed-signal ASIC · RTL · DSP · SSCS 2026 Chipathon</p>
-        <p class="desc">Engineered a mixed-signal front end to extract vibration-synchronous alignment error from photodetector current, feeding a 50 MHz X/Y closed-loop controller headed for silicon tape-out.</p>
+        <p class="badge">★ Team project nominated by IEEE for tape-out</p>
+        <p class="desc">Our team's chip design was nominated by IEEE for tape-out at the SSCS 2026 Chipathon. Engineered a mixed-signal front end to extract vibration-synchronous alignment error from photodetector current, feeding a 50 MHz X/Y closed-loop controller.</p>
         <div class="specs">
           <div class="spec"><div class="v">50 MHz</div><div class="k">control loop</div></div>
           <div class="spec"><div class="v">X/Y</div><div class="k">closed loop</div></div>
@@ -476,7 +521,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     </article>
 
     <!-- 06 -->
-    <article class="feat" style="--accent:var(--software)">
+    <article class="feat" id="proj-safestep" style="--accent:var(--software)">
       <div>
         <p class="fnum">06</p>
         <h3>SafeStep accessibility &amp; safety app</h3>
@@ -556,8 +601,8 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <article class="card" data-tags="asic analog embedded" style="--accent:var(--asic)">
         <h4>ASIC optical autoalignment</h4>
         <p class="tags">Mixed-signal · RTL · DSP</p>
-        <p>Closed-loop optical alignment combining an analog front end, X/Y DSP, and actuator control for silicon tape-out.</p>
-        <div class="plinks"><a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a><a href="#projects">Details →</a></div>
+        <p>Closed-loop optical alignment combining an analog front end, X/Y DSP, and actuator control. Our team's design was nominated by IEEE for tape-out.</p>
+        <div class="plinks"><a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a><a href="#proj-autoalign">Details →</a></div>
       </article>
 
       <article class="card" data-tags="asic software" style="--accent:var(--asic)">
@@ -585,7 +630,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <h4>SafeStep accessibility &amp; safety app</h4>
         <p class="tags">React Native · TypeScript · YOLO · Twilio</p>
         <p>App for blind and low-vision users with YOLO object detection and accelerometer fall detection that texts a caregiver if a check-in goes unanswered.</p>
-        <div class="plinks"><a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a><a href="#projects">Details →</a></div>
+        <div class="plinks"><a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a><a href="#proj-safestep">Details →</a></div>
       </article>
 
       <article class="card" data-tags="software" style="--accent:var(--software)">
@@ -634,7 +679,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <p class="org">Institute for Quantum Computing</p>
       <p class="rol">Research Assistant · Quantum Photonics &amp; Electronics</p>
       <p class="when">Jan 2025 – Present · Waterloo, Canada</p>
-      <p class="sum">Developing CNT-based quantum photonic devices and the automated analysis pipelines behind them.</p>
+      <p class="sum">Building Python automation for the data analysis behind CNT-based quantum photonic device research.</p>
       <div class="pillars">
         <div class="pillar"><h5>Device fabrication</h5><p>CNT functionalization, thin-film deposition, single photon detectors</p></div>
         <div class="pillar"><h5>Characterization</h5><p>UV-Vis, Raman spectroscopy, SEM</p></div>
@@ -643,17 +688,12 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <div class="specs">
         <div class="spec"><div class="v">90%</div><div class="k">less UV-Vis processing time</div></div>
         <div class="spec"><div class="v">6 h/wk</div><div class="k">research workload saved</div></div>
-        <div class="spec"><div class="v">~99.9%</div><div class="k">CNT purity after sorting</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x1" aria-expanded="false">Details →</button></div>
       <div class="details" id="x1" hidden>
         <ul>
-          <li>Built a Python pipeline with NumPy and SciPy to automate UV-Vis analysis, reducing processing time by 90%.</li>
+          <li>Built a Python pipeline using NumPy and SciPy to automate UV-Vis analysis, reducing processing time by 90%.</li>
           <li>Automated the data validation, visualization, and reporting workflow, reducing research workload by up to 6 hours per week.</li>
-          <li>Designed the analysis workflow that identifies optimal carbon nanotube lengths from experimental datasets using statistical design of experiments.</li>
-          <li>Fabricated CNT-based single photon detectors by functionalizing nanotubes with photosensitive proteins, enabling photon to electrical signal transduction.</li>
-          <li>Synthesized and sorted carbon nanotubes with a tip sonicator and ultracentrifuge, reaching roughly 99.9% purity.</li>
-          <li>Deposited CNT thin-film sensors on silicon substrates by drop-casting and roll-coating, tuning parameters for film uniformity and electrical sensitivity.</li>
         </ul>
       </div>
     </article>
@@ -662,19 +702,14 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <p class="org">Ontario Battery &amp; Electrochemical Research Centre</p>
       <p class="rol">Battery Intern</p>
       <p class="when">May – Aug 2026 · Waterloo, Canada</p>
-      <p class="sum">Prototyped lithium-ion coin and pouch cells end to end, then analyzed the process parameters that drive cell consistency.</p>
+      <p class="sum">Automated Python analysis workflows for lithium-ion battery cycling and impedance data.</p>
       <div class="specs">
         <div class="spec"><div class="v">5</div><div class="k">cell builds standardized</div></div>
-        <div class="spec"><div class="v">20%</div><div class="k">better cell consistency</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x2" aria-expanded="false">Details →</button></div>
       <div class="details" id="x2" hidden>
         <ul>
           <li>Automated Python workflows for battery cycling and impedance datasets, standardizing analysis across five cell builds.</li>
-          <li>Prototyped lithium-ion coin and pouch cells from slurry preparation through roll-to-roll electrode coating, tab welding, and glovebox assembly.</li>
-          <li>Analyzed electrode porosity, calendering pressure, and coating temperature across build runs, improving cell consistency and performance by 20%.</li>
-          <li>Characterized cells on Maccor cyclers using Electrochemical Impedance Spectroscopy, quantifying internal resistance, energy density, and C-rate behavior.</li>
-          <li>Authored SOPs and equipment documentation for the fabrication line, keeping results reproducible across operators.</li>
         </ul>
       </div>
     </article>
@@ -767,16 +802,16 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
 
     <article class="xp" style="--accent:var(--asic)">
       <p class="org">IEEE SSCS 2026 Chipathon</p>
-      <p class="rol">ASIC optical autoalignment system · Mixed-signal ASIC · RTL · DSP</p>
+      <p class="rol">ASIC optical autoalignment system · Team project nominated by IEEE for tape-out</p>
       <p class="when">2026</p>
-      <p class="sum">Joined the IEEE SSCS 2026 Chipathon. Designing a mixed-signal front end and a parallel X/Y RTL DSP pipeline that extract vibration-synchronous alignment error from photodetector current and drive a 50 MHz closed-loop optical alignment controller headed for tape-out.</p>
+      <p class="sum">Joined the IEEE SSCS 2026 Chipathon. Designing a mixed-signal front end and a parallel X/Y RTL DSP pipeline that extract vibration-synchronous alignment error from photodetector current and drive a 50 MHz closed-loop optical alignment controller. Our team's design was nominated by IEEE for tape-out.</p>
       <div class="specs">
         <div class="spec"><div class="v">50 MHz</div><div class="k">control loop</div></div>
         <div class="spec"><div class="v">40%</div><div class="k">latency reduction</div></div>
       </div>
       <div class="plinks">
         <a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a>
-        <a href="#projects">Project details →</a>
+        <a href="#proj-autoalign">Project details →</a>
       </div>
     </article>
 
@@ -792,7 +827,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <div class="plinks">
         <a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a>
         <a href="https://www.youtube.com/watch?v=3eUGVj-XgpQ" target="_blank" rel="noopener">Demo video →</a>
-        <a href="#projects">Project details →</a>
+        <a href="#proj-safestep">Project details →</a>
       </div>
     </article>
 
