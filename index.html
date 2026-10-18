@@ -480,7 +480,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <p class="fnum">06</p>
         <h3>SafeStep assistive navigation app</h3>
         <p class="tags">React Native · Expo · TypeScript · Python · FastAPI · YOLO · Whisper</p>
-        <p class="desc">A voice-first mobile app that helps blind and low-vision people move through their surroundings independently. It uses real-time computer vision to find everyday objects, give spoken directions, flag obstacles, and remember where things were last seen.</p>
+        <p class="desc">A voice-first mobile app that helps blind and low-vision people move through their surroundings independently. It uses real-time computer vision to find everyday objects, give spoken directions, flag obstacles, remember where things were last seen, and alert an emergency contact after a fall.</p>
         <div class="specs">
           <div class="spec"><div class="v">Voice</div><div class="k">hands-free control</div></div>
           <div class="spec"><div class="v">YOLO</div><div class="k">real-time detection</div></div>
@@ -496,7 +496,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
             <li>Implementing a hands-free voice loop: Whisper speech-to-text turns requests like "find my keys" into search targets, and Expo Speech text-to-speech converts detections into left, right, and ahead cues.</li>
             <li>Designing spatial memory on Tiger Data that stores where and when each object was last detected, so users can ask where they last saw an item; Clerk handles authentication.</li>
             <li>Built an accessibility-first interface with screen-reader roles and labels, large touch targets, a high-contrast dark theme, and a guided camera-permission flow.</li>
-            <li>Planned next: fall detection, scheduled safety check-ins, and alerts to a user's trusted contacts when assistance is needed.</li>
+            <li>Implemented accelerometer-based fall detection that prompts the user with a spoken check-in and automatically alerts their emergency contact if they don't respond within 30 seconds.</li>
           </ul>
         </div>
       </div>
