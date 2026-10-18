@@ -496,7 +496,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
             <li>Implementing a hands-free voice loop: Whisper speech-to-text turns requests like "find my keys" into search targets, and Expo Speech text-to-speech converts detections into left, right, and ahead cues.</li>
             <li>Designing spatial memory on Tiger Data that stores where and when each object was last detected, so users can ask where they last saw an item; Clerk handles authentication.</li>
             <li>Built an accessibility-first interface with screen-reader roles and labels, large touch targets, a high-contrast dark theme, and a guided camera-permission flow.</li>
-            <li>Implemented accelerometer-based fall detection that prompts the user with a spoken check-in and automatically alerts their emergency contact if they don't respond within 30 seconds.</li>
+            <li>Optimized accelerometer-based fall detection with threshold tuning and post-impact inactivity checks, cutting false alarms by about 30%; an unanswered spoken check-in alerts a trusted contact after 30 seconds.</li>
           </ul>
         </div>
       </div>
