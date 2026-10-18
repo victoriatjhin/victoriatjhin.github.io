@@ -97,9 +97,10 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .wins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:760px){.wins{grid-template-columns:1fr}}
 .win{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(224,181,68,.10),rgba(224,181,68,0) 55%),var(--surface);border:1px solid var(--hair);border-top:3px solid var(--gold);padding:24px 24px 22px;--accent:var(--gold)}
-.win .kick{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);margin:0 0 12px}
-.win .kick svg{width:14px;height:14px;fill:var(--gold)}
 .win h3{font-size:clamp(19px,2.2vw,23px);letter-spacing:-.02em;font-weight:700;line-height:1.2;margin:0 0 10px}
+.win h3 a{text-decoration:none}
+.win h3 a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:4px}
+.win p.what a{color:var(--ink);text-decoration-color:var(--gold);text-underline-offset:3px}
 .win p.what{font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.55;color:var(--muted);margin:0 0 18px;max-width:52ch}
 .win p.what b{color:var(--ink);font-weight:600}
 .badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:#000;background:var(--gold);padding:3px 9px;border-radius:2px;margin:0 0 12px;font-weight:500}
@@ -213,6 +214,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   <div class="wrap">
     <a class="mark" href="#top">Victoria Tjhin</a>
     <nav class="topnav">
+      <a href="#recent">Achievements</a>
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
@@ -250,22 +252,26 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     </div>
     <div class="wins">
       <article class="win">
-        <p class="kick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l2.1 5.4L16 6.1l-4.5 3.8L13 16 8 12.9 3 16l1.5-6.1L0 6.1l5.9-.7z"/></svg> Nominated by IEEE</p>
-        <h3>Our chip was nominated for tape-out</h3>
-        <p class="what">My team's <b>ASIC optical autoalignment system</b> from the <b>IEEE SSCS 2026 Chipathon</b> was nominated by IEEE for tape-out, a step toward seeing our design fabricated in real silicon.</p>
+        <p class="badge">★ Nominated by IEEE for tape-out</p>
+        <h3><a href="#proj-autoalign">Our chip was nominated for tape-out</a></h3>
+        <p class="what">My team's <a href="#proj-autoalign"><b>ASIC optical autoalignment system</b></a> from the <a href="https://github.com/sscs-ose/sscs-chipathon-2026" target="_blank" rel="noopener"><b>IEEE SSCS 2026 Chipathon</b></a> was nominated by IEEE for tape-out, a step toward seeing our design fabricated in real silicon.</p>
         <div class="plinks">
           <a href="#proj-autoalign">Project details →</a>
+          <a href="#hack-chipathon">Chipathon entry →</a>
           <a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a>
+          <a href="https://github.com/sscs-ose/sscs-chipathon-2026" target="_blank" rel="noopener">IEEE SSCS Chipathon →</a>
         </div>
       </article>
       <article class="win">
-        <p class="kick"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0l2.1 5.4L16 6.1l-4.5 3.8L13 16 8 12.9 3 16l1.5-6.1L0 6.1l5.9-.7z"/></svg> Completed Hack the Valley 11</p>
-        <h3>Built SafeStep from idea to demo</h3>
-        <p class="what">Built <b>SafeStep</b>, an AI-powered accessibility and safety app for blind and low-vision users, with YOLO object detection, tuned fall detection, and automatic caregiver SMS alerts.</p>
+        <p class="badge">★ Completed Hack the Valley 11</p>
+        <h3><a href="#proj-safestep">Built SafeStep from idea to demo</a></h3>
+        <p class="what">Built <a href="#proj-safestep"><b>SafeStep</b></a> at <a href="https://hack-the-valley-11.devpost.com/" target="_blank" rel="noopener"><b>Hack the Valley 11</b></a>, an AI-powered accessibility and safety app for blind and low-vision users, with YOLO object detection, tuned fall detection, and automatic caregiver SMS alerts.</p>
         <div class="plinks">
           <a href="#proj-safestep">Project details →</a>
+          <a href="#hack-htv">Hackathon entry →</a>
           <a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a>
           <a href="https://www.youtube.com/watch?v=3eUGVj-XgpQ" target="_blank" rel="noopener">Demo video →</a>
+          <a href="https://hack-the-valley-11.devpost.com/" target="_blank" rel="noopener">Hack the Valley 11 →</a>
         </div>
       </article>
     </div>
@@ -800,9 +806,10 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <span class="note">building under a deadline</span>
     </div>
 
-    <article class="xp" style="--accent:var(--asic)">
+    <article class="xp" id="hack-chipathon" style="--accent:var(--asic)">
       <p class="org">IEEE SSCS 2026 Chipathon</p>
-      <p class="rol">ASIC optical autoalignment system · Team project nominated by IEEE for tape-out</p>
+      <p class="rol">ASIC optical autoalignment system · Mixed-signal ASIC · RTL · DSP</p>
+      <p class="badge" style="margin:10px 0 0">★ Team project nominated by IEEE for tape-out</p>
       <p class="when">2026</p>
       <p class="sum">Joined the IEEE SSCS 2026 Chipathon. Designing a mixed-signal front end and a parallel X/Y RTL DSP pipeline that extract vibration-synchronous alignment error from photodetector current and drive a 50 MHz closed-loop optical alignment controller. Our team's design was nominated by IEEE for tape-out.</p>
       <div class="specs">
@@ -812,11 +819,12 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <div class="plinks">
         <a href="https://github.com/victoriatjhin/Probton" target="_blank" rel="noopener">GitHub →</a>
         <a href="#proj-autoalign">Project details →</a>
+        <a href="https://github.com/sscs-ose/sscs-chipathon-2026" target="_blank" rel="noopener">IEEE SSCS Chipathon →</a>
       </div>
     </article>
 
-    <article class="xp" style="--accent:var(--gold)">
-      <p class="org">Hack the Valley</p>
+    <article class="xp" id="hack-htv" style="--accent:var(--gold)">
+      <p class="org">Hack the Valley 11</p>
       <p class="rol">SafeStep · React Native · TypeScript · YOLO · Twilio</p>
       <p class="when">2026 · University of Toronto Scarborough</p>
       <p class="sum">Built SafeStep at Hack the Valley 11, an AI-powered safety and accessibility app for blind and low-vision users. I built the interface, YOLO object detection, fall-detection tuning, and caregiver SMS alerts.</p>
@@ -828,6 +836,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a>
         <a href="https://www.youtube.com/watch?v=3eUGVj-XgpQ" target="_blank" rel="noopener">Demo video →</a>
         <a href="#proj-safestep">Project details →</a>
+        <a href="https://hack-the-valley-11.devpost.com/" target="_blank" rel="noopener">Hack the Valley 11 →</a>
       </div>
     </article>
 
