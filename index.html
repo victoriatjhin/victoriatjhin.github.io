@@ -114,6 +114,8 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .plinks a:hover,.plinks button:hover{color:var(--ink);border-color:var(--accent)}
 
 .diagram{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--hair);border-radius:2px}
+.media{display:flex;flex-direction:column;gap:16px;min-width:0}
+.video{display:block;width:100%;aspect-ratio:16/9;border:1px solid var(--hair);border-radius:2px;background:var(--surface)}
 .dg-box{fill:var(--raised);stroke:var(--hair)}
 .dg-box.hi{stroke:var(--accent)}
 .dg-t{font-family:"JetBrains Mono",monospace;font-size:11px;fill:var(--ink)}
@@ -243,7 +245,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   <div class="wrap">
     <div class="shead">
       <h2>Featured projects</h2>
-      <span class="note">5 of 10 · full list below</span>
+      <span class="note">6 of 11 · full list below</span>
     </div>
 
     <!-- 01 -->
@@ -312,9 +314,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <div class="details" id="d1" hidden>
           <ul>
             <li>Designed the analog integrator and mixed-signal front end that extracts vibration-synchronous alignment error from photodetector current.</li>
-            <li>Implemented a parallel X/Y RTL DSP pipeline that estimates peak offset in two dimensions and issues a correction every dither cycle.</li>
-            <li>Optimized the control handshake between the analog front end, DSP, and actuator blocks, cutting loop latency by 40% and bringing correction inside the real-time timing budget.</li>
-            <li>Architected the control system around modular block interfaces, keeping analog, digital, and control work independently testable.</li>
+            <li>Implemented a parallel X/Y DSP pipeline in RTL that estimates peak offset in 2D and updates position every dither cycle at 50 MHz.</li>
+            <li>Restructured inter-module handshaking between the sensing, DSP, and actuator blocks, reducing end-to-end latency by 40%.</li>
+            <li>Architected modular block interfaces for the control system, enabling 3 sub-teams to build and test their components independently.</li>
           </ul>
         </div>
       </div>
@@ -349,7 +351,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <div class="specs">
           <div class="spec"><div class="v">10 Gb/s</div><div class="k">line rate</div></div>
           <div class="spec"><div class="v">CRC-32</div><div class="k">pipelined engine</div></div>
-          <div class="spec"><div class="v">CDC</div><div class="k">async FIFO</div></div>
+          <div class="spec"><div class="v">156.25 MHz</div><div class="k">64-bit beats</div></div>
         </div>
         <div class="plinks">
           <a href="https://github.com/victoriatjhin/10G-Ethernet-Parser" target="_blank" rel="noopener">GitHub →</a>
@@ -358,9 +360,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <div class="details" id="d2" hidden>
           <ul>
             <li>Developed the full 10 Gb/s MAC receive datapath in Verilog from PCS decoder to AXI-Stream output, covering preamble and SFD detection, frame delineation, and FCS stripping.</li>
-            <li>Designed a pipelined CRC-32 engine in SystemVerilog using byte-serial decomposition and keep-aware partial-beat handling, sustaining a 64-bit data path across variable-length frames.</li>
+            <li>Pipelined the CRC-32 engine in SystemVerilog with keep-aware partial-beat handling, carrying 64-bit beats at 156.25 MHz for the 10 Gb/s line rate.</li>
             <li>Implemented an asynchronous FIFO for clock domain crossing, closing timing between the independent PCS and system domains.</li>
-            <li>Wrote SystemVerilog testbenches covering protocol compliance and edge cases, catching failures before integration.</li>
+            <li>Developed SystemVerilog verification testbenches with randomized and directed frames, identifying CRC defects before integration.</li>
           </ul>
         </div>
       </div>
@@ -403,9 +405,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d3" hidden>
           <ul>
-            <li>Built a cycle-accurate cache simulator in C++ supporting configurable line size, associativity, LRU and random eviction, and write-allocate policies.</li>
+            <li>Developed a cycle-accurate cache simulator in C++ supporting configurable line size, associativity, eviction (LRU and random), and write-allocation policies.</li>
             <li>Instrumented real programs with Intel Pin to drive the simulator across 50M+ memory references, reporting hit rate, AMAT, and total execution cycles for every configuration.</li>
-            <li>Profiled address decoding and data structures, reducing runtime 4× while preserving cycle accuracy.</li>
+            <li>Optimized address decoding and memory access, reducing runtime 4× while preserving cycle accuracy.</li>
             <li>Validated every configuration against hand-calculated ground truth, confirming correctness before drawing conclusions.</li>
           </ul>
         </div>
@@ -435,23 +437,22 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <div>
         <p class="fnum">05</p>
         <h3>EMG wearable sensing system</h3>
-        <p class="tags">C++ · ESP32 · Embedded · Biotron</p>
-        <p class="desc">Developed real-time embedded C++ for an ESP32-based EMG acquisition system sustaining 1 kHz sampling over 8-hour runs, and rebuilt the analog signal path to lift muscle activation above the noise floor.</p>
+        <p class="tags">Embedded C++ · ESP32 · Python · Biotron</p>
+        <p class="desc">Developed real-time C++ firmware for an ESP32-based EMG sensor sustaining 1 kHz sampling over 8-hour runs without resets, then cut dropped samples from 12% to 1% and tripled signal-to-noise ratio.</p>
         <div class="specs">
           <div class="spec"><div class="v">1 kHz</div><div class="k">sampling rate</div></div>
-          <div class="spec"><div class="v">8 h</div><div class="k">continuous runs</div></div>
-          <div class="spec"><div class="v">1%</div><div class="k">dropped samples</div></div>
+          <div class="spec"><div class="v">3×</div><div class="k">signal-to-noise ratio</div></div>
+          <div class="spec"><div class="v">12% → 1%</div><div class="k">dropped samples</div></div>
         </div>
         <div class="plinks">
           <button type="button" data-toggle="d4" aria-expanded="false">Details →</button>
         </div>
         <div class="details" id="d4" hidden>
           <ul>
-            <li>Developed embedded C++ for the ESP32 with real-time sensor interfaces and modular firmware, sustaining 1 kHz sampling across 8-hour continuous runs.</li>
-            <li>Debugged communication protocols, timing behavior, and data integrity under real-time constraints, resolving hardware and software integration failures.</li>
+            <li>Developed C++ firmware for the ESP32-based sensor, sustaining 1 kHz sampling over 8-hour runs without resets.</li>
+            <li>Debugged timing and data-integrity issues and optimized sensor data acquisition using Python, reducing dropped samples from 12% to 1% and improving signal-to-noise ratio by 3×.</li>
             <li>Rebuilt the analog signal path on an EMG fabric prototype through wiring, grounding, and sensor placement changes, lifting muscle activation signal clarity above the noise floor.</li>
-            <li>Validated the acquisition chain over repeated long-duration trials, holding dropped samples to 1%.</li>
-          </ul>
+                      </ul>
         </div>
       </div>
       <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Acquisition chain from EMG fabric electrodes through a low-noise analog front end and ADC to ESP32 firmware and signal processing output">
@@ -472,6 +473,56 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <text class="dg-t" x="462" y="61">Processing</text><text class="dg-s" x="462" y="75">→ output</text>
         <text class="dg-cap" x="330" y="108">validated over repeated trials</text>
       </svg>
+    </article>
+
+    <!-- 06 -->
+    <article class="feat" style="--accent:var(--software)">
+      <div>
+        <p class="fnum">06</p>
+        <h3>SafeStep accessibility &amp; safety app</h3>
+        <p class="tags">React Native · TypeScript · Python · Node.js · YOLO · Twilio · Hack the Valley 11</p>
+        <p class="desc">A mobile app that helps blind and low-vision people navigate their surroundings more safely, using real-time object detection for awareness and fall detection that alerts a caregiver when help is needed. I built the interface, the YOLO object detection, the fall-detection tuning, and the caregiver SMS alerts.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">30%</div><div class="k">fewer false positives</div></div>
+          <div class="spec"><div class="v">10 s</div><div class="k">check-in window</div></div>
+          <div class="spec"><div class="v">SMS</div><div class="k">caregiver alert</div></div>
+        </div>
+        <div class="plinks">
+          <a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a>
+          <a href="https://www.youtube.com/watch?v=3eUGVj-XgpQ" target="_blank" rel="noopener">Demo video →</a>
+          <button type="button" data-toggle="d5" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d5" hidden>
+          <ul>
+            <li>Built the cross-platform React Native and TypeScript interface for blind and low-vision users, with screen-reader labels, large touch targets, and a high-contrast theme.</li>
+            <li>Integrated YOLO-based object detection on the live camera feed to support environmental awareness and safer navigation.</li>
+            <li>Optimized accelerometer-based fall detection, reducing false positives by 30% through motion threshold tuning and improved false-alarm handling.</li>
+            <li>Developed an automated Twilio SMS workflow that notifies a designated caregiver when the user doesn't respond to a voice-based fall check-in within 10 seconds.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="media">
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Accelerometer data feeds tuned fall detection; a detected fall triggers a voice check-in, and if the user does not respond within 10 seconds a Twilio SMS alerts the caregiver; a response cancels the alert">
+        <text class="dg-cap" x="14" y="20">fall to caregiver alert</text>
+        <rect class="dg-box" x="12" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="22" y="61">Accel.</text><text class="dg-s" x="22" y="75">motion data</text>
+        <path class="dg-a" d="M108 63 H124 M118 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="126" y="40" width="96" height="46" rx="2"/>
+        <text class="dg-t" x="136" y="61">Fall detect</text><text class="dg-s" x="136" y="75">tuned</text>
+        <path class="dg-a" d="M226 63 H242 M236 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="244" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="254" y="61">Check-in</text><text class="dg-s" x="254" y="75">voice · 10 s</text>
+        <path class="dg-a" d="M340 63 H356 M350 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="358" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="368" y="61">Twilio SMS</text><text class="dg-s" x="368" y="75">no response</text>
+        <path class="dg-a" d="M454 63 H470 M464 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="472" y="40" width="76" height="46" rx="2"/>
+        <text class="dg-t" x="482" y="61">Caregiver</text><text class="dg-s" x="482" y="75">alerted</text>
+        <path class="dg-a" d="M290 90 V106 H174 V90 M169 96 l5 -6 5 6" stroke-dasharray="3 3"/>
+        <text class="dg-cap" x="300" y="112">user replies → alert cancelled</text>
+      </svg>
+      <iframe class="video" src="https://www.youtube-nocookie.com/embed/3eUGVj-XgpQ?rel=0" title="SafeStep demo video" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
     </article>
   </div>
 </section>
@@ -519,7 +570,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <article class="card" data-tags="asic embedded" style="--accent:var(--asic)">
         <h4>SPI-controlled PWM peripheral</h4>
         <p class="tags">Verilog · Tiny Tapeout</p>
-        <p>Register-mapped peripheral with duty cycle generation and output enable, verified across a 100 kHz SPI bus and a 10 MHz system clock. Submitted for fabrication.</p>
+        <p>Register-mapped SPI slave and 8-bit PWM generator with duty and output-enable control, verified across all 256 duty settings on a 100 kHz SPI bus and 10 MHz clock. Submitted for fabrication.</p>
         <div class="plinks"><a href="https://github.com/victoriatjhin/SPI-Controlled-16-Channel-PWM-Peripheral-" target="_blank" rel="noopener">GitHub →</a></div>
       </article>
 
@@ -528,6 +579,13 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <p class="tags">130 nm · Xschem · Magic VLSI</p>
         <p>Differential-input, single-ended-output op-amp sized within a 5 mW budget, taken from schematic to DRC-clean and LVS-matched layout.</p>
         <div class="plinks"><a href="https://github.com/victoriatjhin/vik_lyn__Analog_Bootcamp" target="_blank" rel="noopener">GitHub →</a></div>
+      </article>
+
+      <article class="card" data-tags="software" style="--accent:var(--software)">
+        <h4>SafeStep accessibility &amp; safety app</h4>
+        <p class="tags">React Native · TypeScript · YOLO · Twilio</p>
+        <p>App for blind and low-vision users with YOLO object detection and accelerometer fall detection that texts a caregiver if a check-in goes unanswered.</p>
+        <div class="plinks"><a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a><a href="#projects">Details →</a></div>
       </article>
 
       <article class="card" data-tags="software" style="--accent:var(--software)">
@@ -546,13 +604,13 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <article class="card" data-tags="embedded software mech" style="--accent:var(--embedded)">
         <h4>Conductive hydrodynamic ink printer</h4>
         <p class="tags">C++ · Marlin · KiCad · SolidWorks · UWNRG</p>
-        <p>Firmware for 3-axis motion control, stepper driver PCBs, and mechanical subsystems held to tolerances that minimize backlash.</p>
+        <p>C++ motion-control firmware synchronizing three axes within 50 µm of target, integrated with custom stepper drivers to cut backlash by 30%.</p>
       </article>
 
       <article class="card" data-tags="embedded software" style="--accent:var(--embedded)">
         <h4>EMG wearable sensing system</h4>
-        <p class="tags">C++ · ESP32 · Biotron</p>
-        <p>Real-time embedded firmware sustaining 1 kHz sampling over 8-hour runs, plus a rebuilt low-noise analog signal path.</p>
+        <p class="tags">C++ · ESP32 · Python · Biotron</p>
+        <p>ESP32 firmware sustaining 1 kHz sampling over 8-hour runs, with dropped samples cut from 12% to 1% and 3× signal-to-noise ratio.</p>
         <div class="plinks"><a href="#projects">Details →</a></div>
       </article>
 
@@ -583,13 +641,15 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <div class="pillar"><h5>Computational analysis</h5><p>Python, NumPy, SciPy, design of experiments</p></div>
       </div>
       <div class="specs">
-        <div class="spec"><div class="v">~90%</div><div class="k">less spectral analysis time</div></div>
+        <div class="spec"><div class="v">90%</div><div class="k">less UV-Vis processing time</div></div>
+        <div class="spec"><div class="v">6 h/wk</div><div class="k">research workload saved</div></div>
         <div class="spec"><div class="v">~99.9%</div><div class="k">CNT purity after sorting</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x1" aria-expanded="false">Details →</button></div>
       <div class="details" id="x1" hidden>
         <ul>
-          <li>Built a Python pipeline with NumPy and SciPy to automate UV-Vis spectral analysis, cutting processing time by roughly 90% and improving repeatability across runs.</li>
+          <li>Built a Python pipeline with NumPy and SciPy to automate UV-Vis analysis, reducing processing time by 90%.</li>
+          <li>Automated the data validation, visualization, and reporting workflow, reducing research workload by up to 6 hours per week.</li>
           <li>Designed the analysis workflow that identifies optimal carbon nanotube lengths from experimental datasets using statistical design of experiments.</li>
           <li>Fabricated CNT-based single photon detectors by functionalizing nanotubes with photosensitive proteins, enabling photon to electrical signal transduction.</li>
           <li>Synthesized and sorted carbon nanotubes with a tip sonicator and ultracentrifuge, reaching roughly 99.9% purity.</li>
@@ -599,16 +659,18 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     </article>
 
     <article class="xp" style="--accent:var(--analog)">
-      <p class="org">Ontario Battery &amp; Electrochemistry Research Centre</p>
-      <p class="rol">Battery Engineering Intern</p>
-      <p class="when">Waterloo, Canada</p>
+      <p class="org">Ontario Battery &amp; Electrochemical Research Centre</p>
+      <p class="rol">Battery Intern</p>
+      <p class="when">May – Aug 2026 · Waterloo, Canada</p>
       <p class="sum">Prototyped lithium-ion coin and pouch cells end to end, then analyzed the process parameters that drive cell consistency.</p>
       <div class="specs">
+        <div class="spec"><div class="v">5</div><div class="k">cell builds standardized</div></div>
         <div class="spec"><div class="v">20%</div><div class="k">better cell consistency</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x2" aria-expanded="false">Details →</button></div>
       <div class="details" id="x2" hidden>
         <ul>
+          <li>Automated Python workflows for battery cycling and impedance datasets, standardizing analysis across five cell builds.</li>
           <li>Prototyped lithium-ion coin and pouch cells from slurry preparation through roll-to-roll electrode coating, tab welding, and glovebox assembly.</li>
           <li>Analyzed electrode porosity, calendering pressure, and coating temperature across build runs, improving cell consistency and performance by 20%.</li>
           <li>Characterized cells on Maccor cyclers using Electrochemical Impedance Spectroscopy, quantifying internal resistance, energy density, and C-rate behavior.</li>
@@ -621,18 +683,17 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <p class="org">Scotiabank</p>
       <p class="rol">Workplace Transformation Analyst</p>
       <p class="when">Jan – Apr 2025 · Toronto, Canada</p>
-      <p class="sum">Queried and analyzed workspace utilization data in SQL to drive a large-scale retrofit decision.</p>
+      <p class="sum">Queried and analyzed workspace utilization data in SQL and Excel to drive a strategic retrofit decision.</p>
       <div class="specs">
-        <div class="spec"><div class="v">80%</div><div class="k">inefficiencies identified</div></div>
-        <div class="spec"><div class="v">23</div><div class="k">workspaces approved</div></div>
-        <div class="spec"><div class="v">13,000+</div><div class="k">employees affected</div></div>
+        <div class="spec"><div class="v">34</div><div class="k">underutilized workspaces</div></div>
+        <div class="spec"><div class="v">13,000+</div><div class="k">employees analyzed</div></div>
+        <div class="spec"><div class="v">6</div><div class="k">work ecosystems</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x3" aria-expanded="false">Details →</button></div>
       <div class="details" id="x3" hidden>
         <ul>
-          <li>Analyzed workspace utilization data across six work ecosystems in SQL and Excel, cutting identified inefficiencies by 80%.</li>
-          <li>Built a retrofit proposal from that analysis, securing executive approval for 23 underutilized workspaces.</li>
-          <li>Delivered ad-hoc strategic analysis to executive leadership, shaping sustainment strategy for over 13,000 employees.</li>
+          <li>Queried operational datasets across 6 work ecosystems using SQL and advanced Excel functions, identifying inefficiencies and supporting the company's sustainment strategy.</li>
+          <li>Analyzed utilization data for 13,000+ employees, identifying 34 underutilized workspaces and delivering data-driven recommendations that secured executive approval for a strategic retrofit.</li>
         </ul>
       </div>
     </article>
@@ -721,9 +782,18 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
 
     <article class="xp" style="--accent:var(--gold)">
       <p class="org">Hack the Valley</p>
-      <p class="rol">Hackathon · University of Toronto Scarborough</p>
-      <p class="when">2026 · Toronto, Canada</p>
-      <p class="sum">Joined Hack the Valley, a hackathon hosted at the University of Toronto Scarborough.</p>
+      <p class="rol">SafeStep · React Native · TypeScript · YOLO · Twilio</p>
+      <p class="when">2026 · University of Toronto Scarborough</p>
+      <p class="sum">Built SafeStep at Hack the Valley 11, an AI-powered safety and accessibility app for blind and low-vision users. I built the interface, YOLO object detection, fall-detection tuning, and caregiver SMS alerts.</p>
+      <div class="specs">
+        <div class="spec"><div class="v">30%</div><div class="k">fewer false positives</div></div>
+        <div class="spec"><div class="v">10 s</div><div class="k">check-in window</div></div>
+      </div>
+      <div class="plinks">
+        <a href="https://devpost.com/software/safestep-a-safer-step-toward-independent-living" target="_blank" rel="noopener">Devpost →</a>
+        <a href="https://www.youtube.com/watch?v=3eUGVj-XgpQ" target="_blank" rel="noopener">Demo video →</a>
+        <a href="#projects">Project details →</a>
+      </div>
     </article>
 
   </div>
@@ -738,8 +808,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     </div>
 
     <div style="margin-bottom:clamp(28px,4vw,44px)">
-    <p class="skillline">C++ · Python · SystemVerilog · Verilog · SQL</p>
-    <p class="skillline dimline">ASIC · RTL · DSP · Embedded · PCB · Computer Architecture</p>
+    <p class="skillline">Python · C++ · TypeScript · SQL · MATLAB · Verilog · SystemVerilog</p>
+    <p class="skillline dimline">React Native · Node.js · Hono · NumPy · SciPy · Pandas · Matplotlib · YOLO · Intel Pin</p>
+    <p class="skillline dimline">Git · Linux · Make · PostgreSQL · Twilio · GTKWave · ModelSim/VCS · Vivado · KiCad</p>
     </div>
 
     <div class="swgrid">
@@ -769,7 +840,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <ul>
           <li>Workplace utilization analytics at Scotiabank</li>
           <li>Querying and cleaning large operational datasets</li>
-          <li>Analysis behind a 23-workspace retrofit decision</li>
+          <li>Analysis behind a 34-workspace retrofit decision</li>
         </ul>
       </div>
       <div class="sw">
@@ -793,8 +864,8 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   <div class="wrap">
     <div class="shead"><h2>Education</h2></div>
     <p class="sch">University of Waterloo</p>
-    <p class="deg">BSc Honours, Nanotechnology Engineering</p>
-    <p class="fine">2024 – 2029</p>
+    <p class="deg">BASc, Honours Nanotechnology Engineering</p>
+    <p class="fine">2024 – 2029 (expected)</p>
     <dl style="margin:18px 0 0;max-width:640px">
       <div class="skillrow"><dt>GPA</dt><dd>3.92 / 4.00</dd></div>
       <div class="skillrow"><dt>Awards</dt><dd>Consecutive Term Distinction</dd></div>
