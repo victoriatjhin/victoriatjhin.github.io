@@ -478,44 +478,44 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
     <article class="feat" style="--accent:var(--software)">
       <div>
         <p class="fnum">06</p>
-        <h3>SafeStep assistive navigation app</h3>
-        <p class="tags">React Native · Expo · TypeScript · Python · FastAPI · YOLO · OpenCV · Whisper</p>
-        <p class="desc">A voice-first mobile app that helps blind and low-vision people move through their surroundings independently. It uses real-time computer vision to find everyday objects, give spoken directions, flag obstacles, remember where things were last seen, and alert an emergency contact after a fall.</p>
+        <h3>SafeStep accessibility &amp; safety app</h3>
+        <p class="tags">React Native · TypeScript · Python · Node.js · YOLO · Twilio</p>
+        <p class="desc">A mobile app that helps blind and low-vision people navigate their surroundings more safely, using real-time object detection for awareness and fall detection that alerts a caregiver when help is needed. I built the interface, the YOLO object detection, the fall-detection tuning, and the caregiver SMS alerts.</p>
         <div class="specs">
-          <div class="spec"><div class="v">Voice</div><div class="k">hands-free control</div></div>
-          <div class="spec"><div class="v">YOLO</div><div class="k">real-time detection</div></div>
-          <div class="spec"><div class="v">30%</div><div class="k">fewer false alarms</div></div>
+          <div class="spec"><div class="v">30%</div><div class="k">fewer false positives</div></div>
+          <div class="spec"><div class="v">10 s</div><div class="k">check-in window</div></div>
+          <div class="spec"><div class="v">SMS</div><div class="k">caregiver alert</div></div>
         </div>
         <div class="plinks">
           <button type="button" data-toggle="d5" aria-expanded="false">Details →</button>
         </div>
         <div class="details" id="d5" hidden>
           <ul>
-            <li>Built a voice-first, cross-platform accessibility app for blind and low-vision users in React Native, Expo, and TypeScript, enabling voice-driven object search and safe navigation.</li>
-            <li>Integrated YOLO object detection with a Python FastAPI backend via REST APIs, processing live camera frames to detect obstacles and estimate object distance for real-time guidance.</li>
-            <li>Optimized accelerometer-based fall detection through threshold tuning and post-impact inactivity checks, reducing false alarms by 30% and automating emergency-contact alerts after 30 seconds of user nonresponse.</li>
-            <li>Implemented hands-free voice interaction with Whisper speech-to-text and Expo Speech text-to-speech, converting user commands and detection results into spoken feedback.</li>
-            <li>Developed spatial memory on Tiger Data that stores object locations and detection timestamps, letting users ask by voice where an item was last seen.</li>
+            <li>Built the cross-platform React Native and TypeScript interface for blind and low-vision users, with screen-reader labels, large touch targets, and a high-contrast theme.</li>
+            <li>Integrated YOLO-based object detection on the live camera feed to support environmental awareness and safer navigation.</li>
+            <li>Optimized accelerometer-based fall detection, reducing false positives by 30% through motion threshold tuning and improved false-alarm handling.</li>
+            <li>Developed an automated Twilio SMS workflow that notifies a designated caregiver when the user doesn't respond to a voice-based fall check-in within 10 seconds.</li>
           </ul>
         </div>
       </div>
-      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Voice request and camera frames from the Expo app go to a FastAPI backend, which runs YOLO and OpenCV detection, computes direction and obstacles, and returns spoken guidance through text-to-speech; last-seen object locations are stored in Tiger Data">
-        <text class="dg-cap" x="14" y="20">ask, detect, guide</text>
-        <rect class="dg-box" x="12" y="40" width="88" height="46" rx="2"/>
-        <text class="dg-t" x="22" y="61">Expo app</text><text class="dg-s" x="22" y="75">mic · camera</text>
-        <path class="dg-a" d="M104 63 H120 M114 58 l6 5 -6 5"/>
-        <rect class="dg-box hi" x="122" y="40" width="90" height="46" rx="2"/>
-        <text class="dg-t" x="132" y="61">FastAPI</text><text class="dg-s" x="132" y="75">REST · STT</text>
-        <path class="dg-a" d="M216 63 H232 M226 58 l6 5 -6 5"/>
-        <rect class="dg-box hi" x="234" y="40" width="92" height="46" rx="2"/>
-        <text class="dg-t" x="244" y="61">Detection</text><text class="dg-s" x="244" y="75">YOLO · OpenCV</text>
-        <path class="dg-a" d="M330 63 H346 M340 58 l6 5 -6 5"/>
-        <rect class="dg-box" x="348" y="40" width="90" height="46" rx="2"/>
-        <text class="dg-t" x="358" y="61">Guidance</text><text class="dg-s" x="358" y="75">direction</text>
-        <path class="dg-a" d="M442 63 H458 M452 58 l6 5 -6 5"/>
-        <rect class="dg-box" x="460" y="40" width="88" height="46" rx="2"/>
-        <text class="dg-t" x="470" y="61">Speech</text><text class="dg-s" x="470" y="75">spoken cue</text>
-        <text class="dg-cap" x="214" y="108">last-seen locations → Tiger Data</text>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Accelerometer data feeds tuned fall detection; a detected fall triggers a voice check-in, and if the user does not respond within 10 seconds a Twilio SMS alerts the caregiver; a response cancels the alert">
+        <text class="dg-cap" x="14" y="20">fall to caregiver alert</text>
+        <rect class="dg-box" x="12" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="22" y="61">Accel.</text><text class="dg-s" x="22" y="75">motion data</text>
+        <path class="dg-a" d="M108 63 H124 M118 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="126" y="40" width="96" height="46" rx="2"/>
+        <text class="dg-t" x="136" y="61">Fall detect</text><text class="dg-s" x="136" y="75">tuned</text>
+        <path class="dg-a" d="M226 63 H242 M236 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="244" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="254" y="61">Check-in</text><text class="dg-s" x="254" y="75">voice · 10 s</text>
+        <path class="dg-a" d="M340 63 H356 M350 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="358" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="368" y="61">Twilio SMS</text><text class="dg-s" x="368" y="75">no response</text>
+        <path class="dg-a" d="M454 63 H470 M464 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="472" y="40" width="76" height="46" rx="2"/>
+        <text class="dg-t" x="482" y="61">Caregiver</text><text class="dg-s" x="482" y="75">alerted</text>
+        <path class="dg-a" d="M290 90 V106 H174 V90 M169 96 l5 -6 5 6" stroke-dasharray="3 3"/>
+        <text class="dg-cap" x="300" y="112">user replies → alert cancelled</text>
       </svg>
     </article>
   </div>
@@ -576,9 +576,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </article>
 
       <article class="card" data-tags="software" style="--accent:var(--software)">
-        <h4>SafeStep assistive navigation app</h4>
-        <p class="tags">React Native · FastAPI · YOLO · Whisper</p>
-        <p>Voice-first mobile app that uses real-time computer vision to help blind and low-vision users find objects, avoid obstacles, and hear spoken directions.</p>
+        <h4>SafeStep accessibility &amp; safety app</h4>
+        <p class="tags">React Native · TypeScript · YOLO · Twilio</p>
+        <p>App for blind and low-vision users with YOLO object detection and accelerometer fall detection that texts a caregiver if a check-in goes unanswered.</p>
         <div class="plinks"><a href="#projects">Details →</a></div>
       </article>
 
