@@ -479,24 +479,23 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <div>
         <p class="fnum">06</p>
         <h3>SafeStep assistive navigation app</h3>
-        <p class="tags">React Native · Expo · TypeScript · Python · FastAPI · YOLO · Whisper</p>
+        <p class="tags">React Native · Expo · TypeScript · Python · FastAPI · YOLO · OpenCV · Whisper</p>
         <p class="desc">A voice-first mobile app that helps blind and low-vision people move through their surroundings independently. It uses real-time computer vision to find everyday objects, give spoken directions, flag obstacles, remember where things were last seen, and alert an emergency contact after a fall.</p>
         <div class="specs">
           <div class="spec"><div class="v">Voice</div><div class="k">hands-free control</div></div>
           <div class="spec"><div class="v">YOLO</div><div class="k">real-time detection</div></div>
-          <div class="spec"><div class="v">iOS + Android</div><div class="k">one codebase</div></div>
+          <div class="spec"><div class="v">30%</div><div class="k">fewer false alarms</div></div>
         </div>
         <div class="plinks">
           <button type="button" data-toggle="d5" aria-expanded="false">Details →</button>
         </div>
         <div class="details" id="d5" hidden>
           <ul>
-            <li>Building a cross-platform mobile app in React Native, Expo, and TypeScript that lets blind and low-vision users locate objects, hear spoken directional guidance, and receive obstacle warnings without looking at the screen.</li>
-            <li>Developing a Python FastAPI backend exposing REST endpoints that run live camera frames through YOLO object detection, with OpenCV preprocessing and MediaPipe, returning target positions and obstacles to the app.</li>
-            <li>Implementing a hands-free voice loop: Whisper speech-to-text turns requests like "find my keys" into search targets, and Expo Speech text-to-speech converts detections into left, right, and ahead cues.</li>
-            <li>Designing spatial memory on Tiger Data that stores where and when each object was last detected, so users can ask where they last saw an item; Clerk handles authentication.</li>
-            <li>Built an accessibility-first interface with screen-reader roles and labels, large touch targets, a high-contrast dark theme, and a guided camera-permission flow.</li>
+            <li>Engineered a voice-first, cross-platform mobile app in React Native, Expo, and TypeScript that lets blind and low-vision users locate objects and navigate their surroundings.</li>
+            <li>Integrated YOLO object detection with a Python FastAPI backend over REST APIs, processing live camera frames to detect objects and obstacles and return real-time directional guidance.</li>
             <li>Optimized accelerometer-based fall detection with threshold tuning and post-impact inactivity checks, cutting false alarms by about 30%; an unanswered spoken check-in alerts a trusted contact after 30 seconds.</li>
+            <li>Implemented hands-free voice interaction with Whisper speech-to-text and Expo Speech text-to-speech, converting user commands and detection results into spoken feedback.</li>
+            <li>Built spatial memory on Tiger Data that stores object locations and detection timestamps, letting users ask by voice where an item was last seen.</li>
           </ul>
         </div>
       </div>
