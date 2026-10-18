@@ -243,7 +243,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   <div class="wrap">
     <div class="shead">
       <h2>Featured projects</h2>
-      <span class="note">5 of 10 · full list below</span>
+      <span class="note">6 of 11 · full list below</span>
     </div>
 
     <!-- 01 -->
@@ -473,6 +473,52 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <text class="dg-cap" x="330" y="108">validated over repeated trials</text>
       </svg>
     </article>
+
+    <!-- 06 -->
+    <article class="feat" style="--accent:var(--software)">
+      <div>
+        <p class="fnum">06</p>
+        <h3>SafeStep assistive navigation app</h3>
+        <p class="tags">React Native · Expo · TypeScript · Python · FastAPI · YOLO · Whisper</p>
+        <p class="desc">A voice-first mobile app that helps blind and low-vision people move through their surroundings independently. It uses real-time computer vision to find everyday objects, give spoken directions, flag obstacles, and remember where things were last seen.</p>
+        <div class="specs">
+          <div class="spec"><div class="v">Voice</div><div class="k">hands-free control</div></div>
+          <div class="spec"><div class="v">YOLO</div><div class="k">real-time detection</div></div>
+          <div class="spec"><div class="v">iOS + Android</div><div class="k">one codebase</div></div>
+        </div>
+        <div class="plinks">
+          <button type="button" data-toggle="d5" aria-expanded="false">Details →</button>
+        </div>
+        <div class="details" id="d5" hidden>
+          <ul>
+            <li>Building a cross-platform mobile app in React Native, Expo, and TypeScript that lets blind and low-vision users locate objects, hear spoken directional guidance, and receive obstacle warnings without looking at the screen.</li>
+            <li>Developing a Python FastAPI backend exposing REST endpoints that run live camera frames through YOLO object detection, with OpenCV preprocessing and MediaPipe, returning target positions and obstacles to the app.</li>
+            <li>Implementing a hands-free voice loop: Whisper speech-to-text turns requests like "find my keys" into search targets, and Expo Speech text-to-speech converts detections into left, right, and ahead cues.</li>
+            <li>Designing spatial memory on Tiger Data that stores where and when each object was last detected, so users can ask where they last saw an item; Clerk handles authentication.</li>
+            <li>Built an accessibility-first interface with screen-reader roles and labels, large touch targets, a high-contrast dark theme, and a guided camera-permission flow.</li>
+            <li>Planned next: fall detection, scheduled safety check-ins, and alerts to a user's trusted contacts when assistance is needed.</li>
+          </ul>
+        </div>
+      </div>
+      <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Voice request and camera frames from the Expo app go to a FastAPI backend, which runs YOLO and OpenCV detection, computes direction and obstacles, and returns spoken guidance through text-to-speech; last-seen object locations are stored in Tiger Data">
+        <text class="dg-cap" x="14" y="20">ask, detect, guide</text>
+        <rect class="dg-box" x="12" y="40" width="88" height="46" rx="2"/>
+        <text class="dg-t" x="22" y="61">Expo app</text><text class="dg-s" x="22" y="75">mic · camera</text>
+        <path class="dg-a" d="M104 63 H120 M114 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="122" y="40" width="90" height="46" rx="2"/>
+        <text class="dg-t" x="132" y="61">FastAPI</text><text class="dg-s" x="132" y="75">REST · STT</text>
+        <path class="dg-a" d="M216 63 H232 M226 58 l6 5 -6 5"/>
+        <rect class="dg-box hi" x="234" y="40" width="92" height="46" rx="2"/>
+        <text class="dg-t" x="244" y="61">Detection</text><text class="dg-s" x="244" y="75">YOLO · OpenCV</text>
+        <path class="dg-a" d="M330 63 H346 M340 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="348" y="40" width="90" height="46" rx="2"/>
+        <text class="dg-t" x="358" y="61">Guidance</text><text class="dg-s" x="358" y="75">direction</text>
+        <path class="dg-a" d="M442 63 H458 M452 58 l6 5 -6 5"/>
+        <rect class="dg-box" x="460" y="40" width="88" height="46" rx="2"/>
+        <text class="dg-t" x="470" y="61">Speech</text><text class="dg-s" x="470" y="75">spoken cue</text>
+        <text class="dg-cap" x="214" y="108">last-seen locations → Tiger Data</text>
+      </svg>
+    </article>
   </div>
 </section>
 
@@ -528,6 +574,13 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <p class="tags">130 nm · Xschem · Magic VLSI</p>
         <p>Differential-input, single-ended-output op-amp sized within a 5 mW budget, taken from schematic to DRC-clean and LVS-matched layout.</p>
         <div class="plinks"><a href="https://github.com/victoriatjhin/vik_lyn__Analog_Bootcamp" target="_blank" rel="noopener">GitHub →</a></div>
+      </article>
+
+      <article class="card" data-tags="software" style="--accent:var(--software)">
+        <h4>SafeStep assistive navigation app</h4>
+        <p class="tags">React Native · FastAPI · YOLO · Whisper</p>
+        <p>Voice-first mobile app that uses real-time computer vision to help blind and low-vision users find objects, avoid obstacles, and hear spoken directions.</p>
+        <div class="plinks"><a href="#projects">Details →</a></div>
       </article>
 
       <article class="card" data-tags="software" style="--accent:var(--software)">
