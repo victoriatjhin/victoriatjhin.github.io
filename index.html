@@ -58,7 +58,6 @@ a{color:inherit}
 .wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
 
-/* ---------- nav ---------- */
 .topbar{position:sticky;top:0;z-index:60;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--hair)}
 .topbar .wrap{display:flex;align-items:center;gap:20px;height:62px}
 .mark{font-weight:700;font-size:15px;letter-spacing:-.01em;text-decoration:none;white-space:nowrap}
@@ -67,7 +66,6 @@ a{color:inherit}
 .topnav a:hover{color:var(--ink);border-bottom-color:var(--ink)}
 @media (max-width:900px){.topnav{gap:16px;font-size:13px;overflow-x:auto;scrollbar-width:none}.topnav::-webkit-scrollbar{display:none}}
 
-/* ---------- hero ---------- */
 .hero{padding:clamp(64px,11vw,150px) 0 clamp(48px,7vw,88px)}
 h1{font-size:clamp(42px,8.5vw,96px);line-height:.92;letter-spacing:-.04em;font-weight:700;margin:0 0 20px}
 .role{font-size:clamp(16px,2.6vw,24px);color:var(--muted);font-weight:500;letter-spacing:-.01em;margin:0 0 14px}
@@ -86,13 +84,11 @@ h1{font-size:clamp(42px,8.5vw,96px);line-height:.92;letter-spacing:-.04em;font-w
 .cta a.primary{background:var(--ink);color:#000;border-color:var(--ink);font-weight:600}
 .cta a.primary:hover{background:#fff}
 
-/* ---------- section shell ---------- */
 section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .shead{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:clamp(28px,4vw,48px)}
 .shead h2{font-size:clamp(26px,4vw,42px);letter-spacing:-.03em;font-weight:700;margin:0;line-height:1}
 .shead .note{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--dim);margin-left:auto}
 
-/* ---------- recent achievements ---------- */
 #recent{padding:clamp(40px,6vw,72px) 0}
 .wins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 @media (max-width:760px){.wins{grid-template-columns:1fr}}
@@ -105,7 +101,6 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .win p.what b{color:var(--ink);font-weight:600}
 .badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:#000;background:var(--gold);padding:3px 9px;border-radius:2px;margin:0 0 12px;font-weight:500}
 
-/* ---------- featured project ---------- */
 .feat{border-top:1px solid var(--hair);padding:clamp(32px,4.5vw,56px) 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:start}
 .feat:first-of-type{border-top:none;padding-top:0}
 @media (max-width:900px){.feat{grid-template-columns:1fr;gap:26px}}
@@ -142,7 +137,6 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .details li{position:relative;font-family:"Source Serif 4",Georgia,serif;font-size:16px;line-height:1.55;margin-bottom:9px;color:var(--muted)}
 .details li::before{content:"";position:absolute;left:-1.1em;top:.6em;width:5px;height:5px;background:var(--accent)}
 
-/* ---------- project grid ---------- */
 .filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
 .filter button{
   font-family:"JetBrains Mono",monospace;font-size:12.5px;background:transparent;
@@ -158,7 +152,6 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .card p:not(.tags){font-family:"Source Serif 4",Georgia,serif;font-size:15.5px;line-height:1.5;color:var(--muted);margin:0 0 16px;flex:1}
 .card .plinks a{padding:6px 11px;font-size:11.5px}
 
-/* ---------- experience ---------- */
 .xp{background:var(--surface);border:1px solid var(--hair);border-left:3px solid var(--accent);padding:24px;margin-bottom:12px}
 .xp .org{font-size:19px;font-weight:600;letter-spacing:-.02em;margin:0}
 .xp .rol{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--accent);margin:6px 0 0}
@@ -169,7 +162,6 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .pillar h5{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--accent);margin:0 0 6px;font-weight:500}
 .pillar p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.45}
 
-/* ---------- skills ---------- */
 .swgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--hair);border:1px solid var(--hair)}
 .sw{background:var(--surface);padding:24px}
 .sw h3{font-size:21px;font-weight:700;letter-spacing:-.02em;margin:0 0 4px}
@@ -186,7 +178,6 @@ section{padding:clamp(56px,8vw,110px) 0;border-top:1px solid var(--hair)}
 .skillrow dt{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--dim);flex:0 0 150px;padding-top:3px}
 .skillrow dd{margin:0;font-size:16px;color:var(--ink);flex:1 1 300px}
 
-/* ---------- about / edu / contact ---------- */
 .two{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(24px,5vw,72px);align-items:start}
 @media (max-width:860px){.two{grid-template-columns:1fr;gap:32px}}
 .about p{font-family:"Source Serif 4",Georgia,serif;font-size:clamp(18px,2.2vw,21px);line-height:1.6;max-width:62ch;color:var(--muted);margin:0 0 18px}
@@ -228,7 +219,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
 
 <main id="top">
 
-<!-- ==================== HERO ==================== -->
 <div class="hero">
   <div class="wrap">
     <h1>Victoria Tjhin</h1>
@@ -243,7 +233,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </div>
 
-<!-- ==================== RECENT ACHIEVEMENTS ==================== -->
 <section id="recent" aria-labelledby="recent-h">
   <div class="wrap">
     <div class="shead">
@@ -278,7 +267,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== ABOUT ==================== -->
 <section id="about">
   <div class="wrap">
     <div class="shead"><h2>About</h2></div>
@@ -290,7 +278,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== FEATURED ==================== -->
 <section id="projects">
   <div class="wrap">
     <div class="shead">
@@ -298,7 +285,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <span class="note">6 of 11 · full list below</span>
     </div>
 
-    <!-- 01 -->
     <article class="feat" style="--accent:var(--asic)">
       <div>
         <p class="fnum">01</p>
@@ -317,10 +303,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d0" hidden>
           <ul>
-            <li>Designing the UART RTL in SystemVerilog that carries the scene from the host into the chip and streams rendered pixels back out over the same link.</li>
-            <li>Verifying the UART with a cocotb testbench run under Verilator, as part of the project's RTL simulation suite.</li>
-            <li>Working within the Tiny Tapeout flow: modules share constants and types through a common package and interfaces, referenced by qualified name for compatibility with the flow's Yosys version.</li>
-            <li>The team cross-checks the RTL against a C++ software model that renders scenes with the chip's 16-bit arithmetic and counts cycles.</li>
+            <li>Developed cocotb testbenches in Python to verify UART RX/TX functionality in Verilator, checking serial bit sequences and validating received and transmitted data against expected results.</li>
+            <li>Designed Verilog RTL for UART interfaces with baud-rate generation and start/stop-bit framing, enabling reliable serial communication between the host and the ray-tracing chip.</li>
+            <li>Verified the UART RTL across back-to-back transfers, idle states, and boundary data patterns.</li>
           </ul>
         </div>
       </div>
@@ -345,7 +330,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 02 -->
     <article class="feat" id="proj-autoalign" style="--accent:var(--asic)">
       <div>
         <p class="fnum">02</p>
@@ -364,10 +348,12 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d1" hidden>
           <ul>
-            <li>Designed the analog integrator and mixed-signal front end that extracts vibration-synchronous alignment error from photodetector current.</li>
-            <li>Implemented a parallel X/Y DSP pipeline in RTL that estimates peak offset in 2D and updates position every dither cycle at 50 MHz.</li>
+            <li>Designed a SystemVerilog finite-state machine (FSM) to control SPI register read/write transactions, implementing shift-register sequencing and chip-select timing for chip-core/peripheral communication.</li>
+            <li>Developed Python cocotb testbenches to verify SPI transactions and FSM state transitions, debugging protocol timing and control-logic defects using GTKWave.</li>
+            <li>Integrated and simulated the chip core and wave controller at top level, validating inter-module handshaking and control sequencing to identify integration defects before tape-out.</li>
+            <li>Implemented a parallel X/Y DSP pipeline that estimates peak offset in 2D and updates position every dither cycle at 50 MHz.</li>
             <li>Restructured inter-module handshaking between the sensing, DSP, and actuator blocks, reducing end-to-end latency by 40%.</li>
-            <li>Architected modular block interfaces for the control system, enabling 3 sub-teams to build and test their components independently.</li>
+            <li>Architected modular software block interfaces for the control system, enabling 3 sub-teams to build and test components independently.</li>
           </ul>
         </div>
       </div>
@@ -392,7 +378,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 03 -->
     <article class="feat" style="--accent:var(--asic)">
       <div>
         <p class="fnum">03</p>
@@ -410,10 +395,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d2" hidden>
           <ul>
-            <li>Developed the full 10 Gb/s MAC receive datapath in Verilog from PCS decoder to AXI-Stream output, covering preamble and SFD detection, frame delineation, and FCS stripping.</li>
-            <li>Pipelined the CRC-32 engine in SystemVerilog with keep-aware partial-beat handling, carrying 64-bit beats at 156.25 MHz for the 10 Gb/s line rate.</li>
-            <li>Implemented an asynchronous FIFO for clock domain crossing, closing timing between the independent PCS and system domains.</li>
-            <li>Developed SystemVerilog verification testbenches with randomized and directed frames, identifying CRC defects before integration.</li>
+            <li>Developed SystemVerilog testbenches using directed and randomized test cases to verify Ethernet MAC RTL, CRC-32 error detection, and variable-length frame handling across protocol edge cases.</li>
+            <li>Designed a pipelined parallel CRC-32 datapath processing 64-bit AXI-Stream data at 156.25 MHz, with keep-aware partial-beat handling to sustain 10 Gb/s throughput.</li>
+            <li>Verified RTL control logic for preamble/SFD stripping, FCS removal, frame-boundary detection, and AXI-Stream backpressure, checking output stability under downstream stalls.</li>
           </ul>
         </div>
       </div>
@@ -438,13 +422,12 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 04 -->
     <article class="feat" style="--accent:var(--software)">
       <div>
         <p class="fnum">04</p>
         <h3>Cycle-accurate cache simulator</h3>
         <p class="tags">C++ · Intel Pin · Computer architecture</p>
-        <p class="desc">Built a cycle-accurate C++ cache simulator and drove it with 50M+ Intel Pin memory references to evaluate cache performance across configurations, then profiled it to 4× faster execution.</p>
+        <p class="desc">Built a cycle-accurate C++ cache simulator and drove it with 50M+ Intel Pin memory references to evaluate cache performance across configurations, then replaced modulo indexing and pointer-chasing with bit-masked decoding for 4× faster execution.</p>
         <div class="specs">
           <div class="spec"><div class="v">50M+</div><div class="k">memory references</div></div>
           <div class="spec"><div class="v">4×</div><div class="k">faster execution</div></div>
@@ -456,10 +439,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d3" hidden>
           <ul>
-            <li>Developed a cycle-accurate cache simulator in C++ supporting configurable line size, associativity, eviction (LRU and random), and write-allocation policies.</li>
-            <li>Instrumented real programs with Intel Pin to drive the simulator across 50M+ memory references, reporting hit rate, AMAT, and total execution cycles for every configuration.</li>
-            <li>Optimized address decoding and memory access, reducing runtime 4× while preserving cycle accuracy.</li>
-            <li>Validated every configuration against hand-calculated ground truth, confirming correctness before drawing conclusions.</li>
+            <li>Built a cycle-accurate cache simulator in C++ supporting configurable line size, associativity, eviction, and write-allocation policies.</li>
+            <li>Instrumented binaries with Intel Pin, reporting hit rate, AMAT, and cycle counts across configurations.</li>
+            <li>Replaced modulo indexing and pointer-chasing with bit-masked address decoding and flat arrays, cutting runtime 4×.</li>
           </ul>
         </div>
       </div>
@@ -483,7 +465,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 05 -->
     <article class="feat" style="--accent:var(--embedded)">
       <div>
         <p class="fnum">05</p>
@@ -500,10 +481,10 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d4" hidden>
           <ul>
-            <li>Developed C++ firmware for the ESP32-based sensor, sustaining 1 kHz sampling over 8-hour runs without resets.</li>
-            <li>Debugged timing and data-integrity issues and optimized sensor data acquisition using Python, reducing dropped samples from 12% to 1% and improving signal-to-noise ratio by 3×.</li>
-            <li>Rebuilt the analog signal path on an EMG fabric prototype through wiring, grounding, and sensor placement changes, lifting muscle activation signal clarity above the noise floor.</li>
-                      </ul>
+            <li>Developed modular embedded C++ firmware for the ESP32, sustaining 1 kHz sampling across 8-hour runs with no resets.</li>
+            <li>Debugged protocol, timing, and data-integrity issues under real-time constraints, reducing dropped samples from 12% to 1%.</li>
+            <li>Rebuilt the signal processing pipeline and sensor interface through wiring, grounding, and sensor placement changes, raising signal-to-noise ratio 3×.</li>
+          </ul>
         </div>
       </div>
       <svg class="diagram" viewBox="0 0 560 132" role="img" aria-label="Acquisition chain from EMG fabric electrodes through a low-noise analog front end and ADC to ESP32 firmware and signal processing output">
@@ -526,7 +507,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </svg>
     </article>
 
-    <!-- 06 -->
     <article class="feat" id="proj-safestep" style="--accent:var(--software)">
       <div>
         <p class="fnum">06</p>
@@ -545,10 +525,9 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         </div>
         <div class="details" id="d5" hidden>
           <ul>
-            <li>Built the cross-platform React Native and TypeScript interface for blind and low-vision users, with screen-reader labels, large touch targets, and a high-contrast theme.</li>
-            <li>Integrated YOLO-based object detection on the live camera feed to support environmental awareness and safer navigation.</li>
-            <li>Optimized accelerometer-based fall detection, reducing false positives by 30% through motion threshold tuning and improved false-alarm handling.</li>
-            <li>Developed an automated Twilio SMS workflow that notifies a designated caregiver when the user doesn't respond to a voice-based fall check-in within 10 seconds.</li>
+            <li>Built a cross-platform accessibility app for blind and low-vision users, integrating YOLO-based object detection to support environmental awareness and safer navigation.</li>
+            <li>Developed an automated SMS alert workflow that notifies designated caregivers when a user fails to respond to a voice-based fall check-in within 10 seconds.</li>
+            <li>Optimized accelerometer-based fall detection algorithms, reducing false positives by 30% through motion threshold tuning and improved false-alarm handling.</li>
           </ul>
         </div>
       </div>
@@ -578,7 +557,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== ALL PROJECTS ==================== -->
 <section id="allprojects">
   <div class="wrap">
     <div class="shead">
@@ -655,7 +633,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <article class="card" data-tags="embedded software mech" style="--accent:var(--embedded)">
         <h4>Conductive hydrodynamic ink printer</h4>
         <p class="tags">C++ · Marlin · KiCad · SolidWorks · UWNRG</p>
-        <p>C++ motion-control firmware synchronizing three axes within 50 µm of target, integrated with custom stepper drivers to cut backlash by 30%.</p>
+        <p>C++ motion-control firmware synchronizing three axes and lead-screw logic within 50 µm of target, debugged through hardware bring-up and integrated with custom stepper drivers to cut backlash by 30%.</p>
       </article>
 
       <article class="card" data-tags="embedded software" style="--accent:var(--embedded)">
@@ -676,7 +654,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== EXPERIENCE ==================== -->
 <section id="experience">
   <div class="wrap">
     <div class="shead"><h2>Experience</h2></div>
@@ -693,13 +670,13 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       </div>
       <div class="specs">
         <div class="spec"><div class="v">90%</div><div class="k">less UV-Vis processing time</div></div>
-        <div class="spec"><div class="v">6 h/wk</div><div class="k">research workload saved</div></div>
+        <div class="spec"><div class="v">6 h/wk</div><div class="k">saved for 4 researchers</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x1" aria-expanded="false">Details →</button></div>
       <div class="details" id="x1" hidden>
         <ul>
-          <li>Built a Python pipeline using NumPy and SciPy to automate UV-Vis analysis, reducing processing time by 90%.</li>
-          <li>Automated the data validation, visualization, and reporting workflow, reducing research workload by up to 6 hours per week.</li>
+          <li>Built a Python data pipeline with NumPy and SciPy that automates UV-Vis spectral analysis, reducing processing time by 90%.</li>
+          <li>Automated data validation, plotting, and reporting for the lab's measurement workflow, saving 4 researchers 6 hours a week.</li>
         </ul>
       </div>
     </article>
@@ -708,14 +685,19 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <p class="org">Ontario Battery &amp; Electrochemical Research Centre</p>
       <p class="rol">Battery Intern</p>
       <p class="when">May – Aug 2026 · Waterloo, Canada</p>
-      <p class="sum">Automated Python analysis workflows for lithium-ion battery cycling and impedance data.</p>
+      <p class="sum">Prototyped lithium-ion coin and pouch cells end to end and automated Python analysis of their cycling and impedance data.</p>
       <div class="specs">
-        <div class="spec"><div class="v">5</div><div class="k">cell builds standardized</div></div>
+        <div class="spec"><div class="v">40+</div><div class="k">cells prototyped</div></div>
+        <div class="spec"><div class="v">5</div><div class="k">build variants tested</div></div>
+        <div class="spec"><div class="v">6</div><div class="k">operators on the SOPs</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x2" aria-expanded="false">Details →</button></div>
       <div class="details" id="x2" hidden>
         <ul>
-          <li>Automated Python workflows for battery cycling and impedance datasets, standardizing analysis across five cell builds.</li>
+          <li>Prototyped 40+ lithium-ion coin and pouch cells end to end, from slurry prep through coating, tab welding, and assembly.</li>
+          <li>Ran Maccor cycling and impedance spectroscopy across 5 build variants, quantifying resistance and C-rate for each.</li>
+          <li>Automated Python workflows for battery cycling and impedance datasets, standardizing analysis across the 5 cell builds.</li>
+          <li>Authored SOPs and equipment documentation for the fabrication line, keeping results reproducible across 6 operators.</li>
         </ul>
       </div>
     </article>
@@ -724,17 +706,17 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
       <p class="org">Scotiabank</p>
       <p class="rol">Workplace Transformation Analyst</p>
       <p class="when">Jan – Apr 2025 · Toronto, Canada</p>
-      <p class="sum">Queried and analyzed workspace utilization data in SQL and Excel to drive a strategic retrofit decision.</p>
+      <p class="sum">Analyzed 2 years of badge and booking data in SQL to drive an executive-approved workspace redesign.</p>
       <div class="specs">
-        <div class="spec"><div class="v">34</div><div class="k">underutilized workspaces</div></div>
+        <div class="spec"><div class="v">23</div><div class="k">spaces below 40% utilization</div></div>
         <div class="spec"><div class="v">13,000+</div><div class="k">employees analyzed</div></div>
         <div class="spec"><div class="v">6</div><div class="k">work ecosystems</div></div>
       </div>
       <div class="plinks"><button type="button" data-toggle="x3" aria-expanded="false">Details →</button></div>
       <div class="details" id="x3" hidden>
         <ul>
-          <li>Queried operational datasets across 6 work ecosystems using SQL and advanced Excel functions, identifying inefficiencies and supporting the company's sustainment strategy.</li>
-          <li>Analyzed utilization data for 13,000+ employees, identifying 34 underutilized workspaces and delivering data-driven recommendations that secured executive approval for a strategic retrofit.</li>
+          <li>Wrote SQL queries over 2 years of badge and booking data across 6 ecosystems, isolating 23 workspaces below 40% utilization.</li>
+          <li>Presented the analysis to executive leadership, securing approval to redesign 23 spaces for 13,000+ employees.</li>
         </ul>
       </div>
     </article>
@@ -798,7 +780,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== HACKATHONS ==================== -->
 <section id="hackathons">
   <div class="wrap">
     <div class="shead">
@@ -843,7 +824,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== SKILLS ==================== -->
 <section id="skills">
   <div class="wrap">
     <div class="shead">
@@ -884,7 +864,7 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
         <ul>
           <li>Workplace utilization analytics at Scotiabank</li>
           <li>Querying and cleaning large operational datasets</li>
-          <li>Analysis behind a 34-workspace retrofit decision</li>
+          <li>Analysis behind a 23-space redesign decision</li>
         </ul>
       </div>
       <div class="sw">
@@ -903,7 +883,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== EDUCATION ==================== -->
 <section id="education">
   <div class="wrap">
     <div class="shead"><h2>Education</h2></div>
@@ -918,7 +897,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== LEADERSHIP ==================== -->
 <section id="leadership">
   <div class="wrap">
     <div class="shead"><h2>Leadership</h2></div>
@@ -947,7 +925,6 @@ footer{padding:40px 0 60px;border-top:1px solid var(--hair)}
   </div>
 </section>
 
-<!-- ==================== CONTACT ==================== -->
 <section id="contact">
   <div class="wrap">
     <div class="shead"><h2>Contact</h2></div>
